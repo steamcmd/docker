@@ -9,7 +9,7 @@ SteamCMD with different Docker base images for downloading and running Steam gam
 - [`ubuntu-18`, `ubuntu`, `latest`](https://github.com/steamcmd/docker/blob/master/dockerfiles/ubuntu-18)
 - [`ubuntu-16`](https://github.com/steamcmd/docker/blob/master/dockerfiles/ubuntu-16)
 - [`alpine`](https://github.com/steamcmd/docker/blob/master/dockerfiles/alpine)
-- [`busybox`, `lite`](https://github.com/steamcmd/docker/blob/master/dockerfiles/busybox)
+- [`busybox`, `lite`](dockerfiles/busybox)
 
 ## Usage
 
