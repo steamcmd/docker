@@ -2,7 +2,7 @@
 
 # SteamCMD Docker Image
 
-SteamCMD on Ubuntu and BusyBox for downloading and running Steam games and game server software. Currently the images are build every day and only tagged on type of base image (because of the unknown `steamcmd` versions/releases).
+SteamCMD with different Docker base images for downloading and running Steam games and game server software. Currently the images are build every day and only tagged on type of base image.
 
 ## Tags
 
