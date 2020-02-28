@@ -1,0 +1,52 @@
+name: Build and Push Container
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-ubuntu-1804:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -f dockerfiles/ubuntu-18 -t steamcmd/steamcmd:ubuntu-18 .
+      - name: Tag Image
+        run: for TAG in ubuntu latest; do docker tag steamcmd/steamcmd:ubuntu-18 steamcmd/steamcmd:${TAG}; done
+      - name: Push Image
+        run: for TAG in ubuntu-18 ubuntu latest; do docker push steamcmd/steamcmd:${TAG}; done
+
+  build-ubuntu-1604:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -f dockerfiles/ubuntu-16 -t steamcmd:ubuntu-16 .
+      - name: Push Image
+        run: docker push steamcmd/steamcmd:ubuntu-16
+
+  build-alpine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -f dockerfiles/alpine -t steamcmd:alpine .
+      - name: Push Image
+        run: docker push steamcmd/steamcmd:alpine
+
+  build-busybox:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -f dockerfiles/busybox -t steamcmd:busybox .
+      - name: Push Image
+        run: docker push steamcmd/steamcmd:busybox
