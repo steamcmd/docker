@@ -25,7 +25,7 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/ubuntu-16 -t steamcmd:ubuntu-16 .
+        run: docker build -f dockerfiles/ubuntu-16 -t steamcmd/steamcmd:ubuntu-16 .
       - name: Push Image
         run: docker push steamcmd/steamcmd:ubuntu-16
 
@@ -36,7 +36,7 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/alpine -t steamcmd:alpine .
+        run: docker build -f dockerfiles/alpine -t steamcmd/steamcmd:alpine .
       - name: Push Image
         run: docker push steamcmd/steamcmd:alpine
 
@@ -47,6 +47,8 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/busybox -t steamcmd:busybox .
+        run: docker build -f dockerfiles/busybox -t steamcmd/steamcmd:busybox .
+      - name: Tag Image
+        run: docker tag steamcmd/steamcmd:busybox steamcmd/steamcmd:lite
       - name: Push Image
-        run: docker push steamcmd/steamcmd:busybox
+        run: for TAG in busybox lite; do docker push steamcmd/steamcmd:${TAG}; done
