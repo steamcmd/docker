@@ -1,4 +1,6 @@
 [![Build Status](https://img.shields.io/github/workflow/status/steamcmd/docker/Build%20and%20Push%20Container.svg)](https://github.com/steamcmd/docker/actions)
+[![Docker Pulls](https://img.shields.io/docker/pulls/steamcmd/steamcmd.svg)](https://hub.docker.com/repository/docker/steamcmd/steamcmd)
+[![Image Size](https://img.shields.io/docker/image-size/steamcmd/steamcmd.svg)](https://hub.docker.com/repository/docker/steamcmd/steamcmd)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
 
 # SteamCMD Docker Image
