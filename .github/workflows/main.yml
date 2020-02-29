@@ -4,7 +4,7 @@ on:
     branches:
       - master
   schedule:
-      - '0 */4 * * *'
+    - cron: '0 */4 * * *'
 
 jobs:
   build-ubuntu-1804:
