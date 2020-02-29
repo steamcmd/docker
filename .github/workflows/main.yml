@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - master
+  schedule:
+      - '0 */4 * * *'
 
 jobs:
   build-ubuntu-1804:
