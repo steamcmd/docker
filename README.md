@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/github/workflow/status/steamcmd/docker/Build and Push Container)](https://github.com/steamcmd/docker/actions)
+[![Build Status](https://img.shields.io/github/workflow/status/steamcmd/docker/Build%20and%20Push%20Container.svg)](https://github.com/steamcmd/docker/actions)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
 
 # SteamCMD Docker Image
