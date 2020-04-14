@@ -20,20 +20,20 @@ SteamCMD with different Docker base images for downloading and running Steam gam
 
 ## Usage
 
-#### Pull latest image
-```
+### Pull latest image
+```shell
 docker pull steamcmd/steamcmd:latest
 ```
-#### Test interactively
-```
+### Test interactively
+```shell
 docker run -it steamcmd/steamcmd:latest /bin/sh
 ```
-#### Download CSGO
-```
+### Download CSGO
+```shell
 docker run -it steamcmd/steamcmd:latest steamcmd +login anonymous +app_update 740 +quit
 ```
-#### Download CSGO to local mounted directory "data"
-```
+### Download CSGO to local mounted directory "data"
+```shell
 docker run -it -v "$(pwd)":/data steamcmd/steamcmd:latest steamcmd +login anonymous +force_install_dir /data +app_update 740 +quit
 ```
 
