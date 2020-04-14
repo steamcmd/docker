@@ -10,13 +10,13 @@ SteamCMD with different Docker base images for downloading and running Steam gam
 
 ## Tags
 
-- [`ubuntu-18`, `ubuntu`, `latest`](dockerfiles/ubuntu-18)
-- [`ubuntu-16`](dockerfiles/ubuntu-16)
-- [`alpine`](dockerfiles/alpine)
-- [`busybox`, `lite`](dockerfiles/busybox)
-- [`centos-8`, `centos`](dockerfiles/centos-8)
-- [`centos-7`](dockerfiles/centos-7)
-- [`centos-6`](dockerfiles/centos-6)
+  - [`ubuntu-18`, `ubuntu`, `latest`](dockerfiles/ubuntu-18)
+  - [`ubuntu-16`](dockerfiles/ubuntu-16)
+  - [`alpine`](dockerfiles/alpine)
+  - [`busybox`, `lite`](dockerfiles/busybox)
+  - [`centos-8`, `centos`](dockerfiles/centos-8)
+  - [`centos-7`](dockerfiles/centos-7)
+  - [`centos-6`](dockerfiles/centos-6)
 
 ## Usage
 
