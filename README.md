@@ -1,3 +1,4 @@
+[![Codacy Grade](https://img.shields.io/codacy/grade/ac5825743b9643049d78279bdaa289fc)](https://www.codacy.com/gh/steamcmd/docker)
 [![Build Status](https://img.shields.io/github/workflow/status/steamcmd/docker/Build%20and%20Push%20Container.svg?logo=github)](https://github.com/steamcmd/docker/actions)
 [![Docker Pulls](https://img.shields.io/docker/pulls/steamcmd/steamcmd.svg)](https://hub.docker.com/r/steamcmd/steamcmd)
 [![Image Size](https://img.shields.io/docker/image-size/steamcmd/steamcmd.svg)](https://hub.docker.com/r/steamcmd/steamcmd)
@@ -13,6 +14,9 @@ SteamCMD with different Docker base images for downloading and running Steam gam
 - [`ubuntu-16`](dockerfiles/ubuntu-16)
 - [`alpine`](dockerfiles/alpine)
 - [`busybox`, `lite`](dockerfiles/busybox)
+- [`centos-8`, `centos`](dockerfiles/centos-8)
+- [`centos-7`](dockerfiles/centos-7)
+- [`centos-6`](dockerfiles/centos-6)
 
 ## Usage
 

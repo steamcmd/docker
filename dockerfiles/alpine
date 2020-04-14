@@ -26,4 +26,5 @@ COPY --from=builder /lib/ld-linux.so.2  /lib/
 RUN steamcmd +quit | true
 
 # Set default command
-CMD ["steamcmd", "+help", "+quit"]
+ENTRYPOINT ["steamcmd"]
+CMD ["+help", "+quit"]
