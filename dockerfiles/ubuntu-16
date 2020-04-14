@@ -34,4 +34,5 @@ RUN ln -s /usr/games/steamcmd /usr/bin/steamcmd
 RUN steamcmd +quit
 
 # Set default command
-CMD ["steamcmd", "+help", "+quit"]
+ENTRYPOINT ["steamcmd"]
+CMD ["+help", "+quit"]

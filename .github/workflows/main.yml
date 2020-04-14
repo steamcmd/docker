@@ -54,3 +54,38 @@ jobs:
         run: docker tag steamcmd/steamcmd:busybox steamcmd/steamcmd:lite
       - name: Push Image
         run: for TAG in busybox lite; do docker push steamcmd/steamcmd:${TAG}; done
+
+  build-centos-8:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -f dockerfiles/centos-8 -t steamcmd/steamcmd:centos-8 .
+      - name: Tag Image
+        run: docker tag steamcmd/steamcmd:centos-8 steamcmd/steamcmd:centos
+      - name: Push Image
+        run: for TAG in centos-8 centos; do docker push steamcmd/steamcmd:${TAG}; done
+
+  build-centos-7:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -f dockerfiles/centos-7 -t steamcmd/steamcmd:centos-7 .
+      - name: Push Image
+        run: docker push steamcmd/steamcmd:centos-7
+
+  build-centos-6:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -f dockerfiles/centos-6 -t steamcmd/steamcmd:centos-6 .
+      - name: Push Image
+        run: docker push steamcmd/steamcmd:centos-6
