@@ -2,10 +2,10 @@
 
 # Set the base image
 # hadolint ignore=DL3007
-FROM jonakoudijs/steamcmd:latest as builder
+FROM steamcmd/steamcmd:latest as builder
 
 # Update SteamCMD
-RUN +quit
+RUN steamcmd +quit
 
 ######## INSTALL ########
 
