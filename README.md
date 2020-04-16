@@ -6,7 +6,7 @@
 
 # SteamCMD Docker Image
 
-SteamCMD with different Docker base images for downloading and running Steam games and game server software. Currently the images are build every day and only tagged on type of base image.
+SteamCMD on various Docker (Linux) base images for downloading and running Steam games and game server software. The images are build automatically every 4 hours with [Github Actions](https://github.com/steamcmd/docker/actions) and tagged on type of base image.
 
 ## Tags
 
@@ -26,15 +26,15 @@ docker pull steamcmd/steamcmd:latest
 ```
 ### Test interactively
 ```shell
-docker run -it steamcmd/steamcmd:latest /bin/sh
+docker run --entrypoint /bin/sh -it steamcmd/steamcmd:latest
 ```
 ### Download CSGO
 ```shell
-docker run -it steamcmd/steamcmd:latest steamcmd +login anonymous +app_update 740 +quit
+docker run -it steamcmd/steamcmd:latest +login anonymous +app_update 740 +quit
 ```
 ### Download CSGO to local mounted directory "data"
 ```shell
-docker run -it -v "$(pwd)":/data steamcmd/steamcmd:latest steamcmd +login anonymous +force_install_dir /data +app_update 740 +quit
+docker run -it -v "$(pwd)":/data steamcmd/steamcmd:latest +login anonymous +force_install_dir /data +app_update 740 +quit
 ```
 
 ## License
