@@ -10,8 +10,6 @@ SteamCMD on various Docker (Linux) base images for downloading and running Steam
 
 ## Tags
 
-### Linux
-
 *   [`ubuntu-18`, `ubuntu`, `latest`](dockerfiles/ubuntu-18)
 *   [`ubuntu-16`](dockerfiles/ubuntu-16)
 *   [`alpine`](dockerfiles/alpine)
