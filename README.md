@@ -18,6 +18,14 @@ SteamCMD on various Docker (Linux) base images for downloading and running Steam
 *   [`centos-7`](dockerfiles/centos-7)
 *   [`centos-6`](dockerfiles/centos-6)
 
+*   [`windows-1909`, `windows`](dockerfiles/windows-1909)
+*   [`windows-1903`](dockerfiles/windows-1903)
+*   [`windows-core-2019`](dockerfiles/windows-core-2019)
+*   [`windows-core-1909`](dockerfiles/windows-core-1909)
+*   [`windows-core-1903`](dockerfiles/windows-core-1903)
+*   [`windows-nano-1909`](dockerfiles/windows-nano-1909)
+*   [`windows-nano-1903`](dockerfiles/windows-nano-1903)
+
 ## Usage
 
 ### Pull latest image
