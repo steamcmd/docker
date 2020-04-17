@@ -16,8 +16,8 @@ FROM centos:7
 RUN yum -y install glibc.i686 libstdc++.i686 \
  && yum -y clean all
 
- # Set environment variables
- ENV LD_LIBRARY_PATH /usr/sbin
+# Set environment variables
+ENV LD_LIBRARY_PATH /usr/sbin
 
 # Copy steamcmd and required files from builder
 COPY --from=builder /root/.steam/steamcmd/linux32 /usr/sbin
