@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-ubuntu-1804:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
       - name: Docker Login
@@ -21,7 +21,7 @@ jobs:
         run: for TAG in ubuntu-18 ubuntu latest; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-ubuntu-1604:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
       - name: Docker Login
@@ -32,7 +32,7 @@ jobs:
         run: docker push steamcmd/steamcmd:ubuntu-16
 
   build-alpine:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     needs: build-ubuntu-1804
     steps:
       - uses: actions/checkout@v2
@@ -44,7 +44,7 @@ jobs:
         run: docker push steamcmd/steamcmd:alpine
 
   build-busybox:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     needs: build-ubuntu-1804
     steps:
       - uses: actions/checkout@v2
@@ -58,7 +58,7 @@ jobs:
         run: for TAG in busybox lite; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-centos-8:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     needs: build-ubuntu-1804
     steps:
       - uses: actions/checkout@v2
@@ -72,7 +72,7 @@ jobs:
         run: for TAG in centos-8 centos; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-centos-7:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     needs: build-ubuntu-1804
     steps:
       - uses: actions/checkout@v2
@@ -84,7 +84,7 @@ jobs:
         run: docker push steamcmd/steamcmd:centos-7
 
   build-centos-6:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     needs: build-ubuntu-1804
     steps:
       - uses: actions/checkout@v2
