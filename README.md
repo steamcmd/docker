@@ -46,4 +46,4 @@ docker run -it -v "$(pwd)":/data steamcmd/steamcmd:latest +login anonymous +forc
 
 ## License
 
-[MIT license](LICENSE.md)
+[MIT license](LICENSE)
