@@ -7,7 +7,7 @@ on:
     - cron: '0 */4 * * *'
 
 jobs:
-  build-ubuntu-1804:
+  build-ubuntu-18:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -20,7 +20,7 @@ jobs:
       - name: Push Image
         run: for TAG in ubuntu-18 ubuntu latest; do docker push steamcmd/steamcmd:${TAG}; done
 
-  build-ubuntu-1604:
+  build-ubuntu-16:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +33,7 @@ jobs:
 
   build-alpine:
     runs-on: ubuntu-18.04
-    needs: build-ubuntu-1804
+    needs: build-ubuntu-18
     steps:
       - uses: actions/checkout@v2
       - name: Docker Login
@@ -45,7 +45,7 @@ jobs:
 
   build-busybox:
     runs-on: ubuntu-18.04
-    needs: build-ubuntu-1804
+    needs: build-ubuntu-18
     steps:
       - uses: actions/checkout@v2
       - name: Docker Login
@@ -59,7 +59,7 @@ jobs:
 
   build-centos-8:
     runs-on: ubuntu-18.04
-    needs: build-ubuntu-1804
+    needs: build-ubuntu-18
     steps:
       - uses: actions/checkout@v2
       - name: Docker Login
@@ -73,7 +73,7 @@ jobs:
 
   build-centos-7:
     runs-on: ubuntu-18.04
-    needs: build-ubuntu-1804
+    needs: build-ubuntu-18
     steps:
       - uses: actions/checkout@v2
       - name: Docker Login
@@ -85,7 +85,7 @@ jobs:
 
   build-centos-6:
     runs-on: ubuntu-18.04
-    needs: build-ubuntu-1804
+    needs: build-ubuntu-18
     steps:
       - uses: actions/checkout@v2
       - name: Docker Login
@@ -94,3 +94,14 @@ jobs:
         run: docker build -f dockerfiles/centos-6 -t steamcmd/steamcmd:centos-6 .
       - name: Push Image
         run: docker push steamcmd/steamcmd:centos-6
+
+  build-windows-1809:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -f dockerfiles/windows-1809 -t steamcmd/steamcmd:windows-1809 .
+      - name: Push Image
+        run: docker push steamcmd/steamcmd:windows-1809
