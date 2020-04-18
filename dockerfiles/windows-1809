@@ -7,6 +7,7 @@ FROM mcr.microsoft.com/windows:1809
 SHELL ["powershell"]
 
 # Set environment variables
+ENV POWERSHELL_TELEMETRY_OPTOUT 1
 ENV HOME "c:\steamcmd"
 
 # Create system user
@@ -22,9 +23,9 @@ RUN New-Item -ItemType Directory "c:\steamcmd"
 WORKDIR $HOME
 
 # Download and unpack SteamCMD archive
-RUN Invoke-WebRequest http://media.steampowered.com/installer/steamcmd.zip -O c:\steamcmd\steamcmd.zip
-RUN Expand-Archive c:\steamcmd\steamcmd.zip -DestinationPath c:\steamcmd
-RUN Remove-Item c:\steamcmd\steamcmd.zip
+RUN Invoke-WebRequest http://media.steampowered.com/installer/steamcmd.zip -O c:\steamcmd\steamcmd.zip; \
+    Expand-Archive c:\steamcmd\steamcmd.zip -DestinationPath c:\steamcmd; \
+    Remove-Item c:\steamcmd\steamcmd.zip
 
 # Update SteamCMD
 RUN c:\steamcmd\steamcmd.exe +quit; exit 0

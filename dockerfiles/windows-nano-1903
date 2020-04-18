@@ -1,10 +1,32 @@
+######## BUILDER ########
+
+# Set the base image
+FROM steamcmd/steamcmd:windows-core-1903 as builder
+
+# Update SteamCMD
+RUN c:\steamcmd\steamcmd.exe +quit
+
 ######## INSTALL ########
 
 # Set the base image
 FROM mcr.microsoft.com/windows/nanoserver:1903
 
+# Set environment variables
+ENV POWERSHELL_TELEMETRY_OPTOUT 1
+ENV HOME "c:\steamcmd"
 
+# Create SteamCMD directory
+RUN mkdir c:\steamcmd
+
+# Set SteamCMD working directory
+WORKDIR $HOME
+
+# Copy steamcmd and required files from builder
+COPY --from=builder "c:\steamcmd\steamcmd.exe" "c:\steamcmd\steamcmd.exe"
+
+# Update SteamCMD
+RUN c:\steamcmd\steamcmd.exe +quit
 
 # Set default command
-ENTRYPOINT ["steamcmd"]
-CMD ["cmd"]
+ENTRYPOINT c:\steamcmd\steamcmd.exe
+CMD +help +quit
