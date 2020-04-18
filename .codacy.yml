@@ -1,0 +1,5 @@
+---
+engines:
+ hadolint:
+   include_paths:
+     - 'dockerfiles/*'
