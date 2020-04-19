@@ -41,7 +41,7 @@ docker run -it steamcmd/steamcmd:latest +login anonymous +app_update 740 +quit
 ```
 ### Download CSGO to local mounted directory "data"
 ```shell
-docker run -it -v "$(pwd)":/data steamcmd/steamcmd:latest +login anonymous +force_install_dir /data +app_update 740 +quit
+docker run -it -v $PWD:/data steamcmd/steamcmd:latest +login anonymous +force_install_dir /data +app_update 740 +quit
 ```
 
 ## License
