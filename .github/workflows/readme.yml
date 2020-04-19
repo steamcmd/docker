@@ -1,4 +1,4 @@
-name: Update Repository Readme
+name: Update Readme
 on:
   push:
     branches:
