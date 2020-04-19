@@ -1,0 +1,20 @@
+name: Update Repository Readme
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - README.md
+      - .github/workflows/readme.yml
+
+jobs:
+  update-docker-readme:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Update Docker Hub Description
+        uses: peter-evans/dockerhub-description@v2
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+          DOCKERHUB_REPOSITORY: peterevans/dockerhub-description
