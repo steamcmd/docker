@@ -1,4 +1,4 @@
-name: Build Linux Images
+name: Build Images
 on:
   push:
     branches:
@@ -94,3 +94,14 @@ jobs:
         run: docker build -f dockerfiles/centos-6 -t steamcmd/steamcmd:centos-6 .
       - name: Push Image
         run: docker push steamcmd/steamcmd:centos-6
+
+  build-windows-1809:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -f dockerfiles/windows-1809 -t steamcmd/steamcmd:windows-1809 .
+      - name: Push Image
+        run: docker push steamcmd/steamcmd:windows-1809
