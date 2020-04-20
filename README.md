@@ -17,13 +17,13 @@ SteamCMD on various Docker base images for downloading and running Steam games a
 *   [`centos-8`, `centos`](dockerfiles/centos-8)
 *   [`centos-7`](dockerfiles/centos-7)
 *   [`centos-6`](dockerfiles/centos-6)
-*   [`windows-core-2019`, `windows-core`, `windows`](dockerfiles/windows-core-2019)
+*   [`windows-1909`](dockerfiles/windows-1909)
+*   [`windows-1903`](dockerfiles/windows-1903)
+*   [`windows-1809`, `windows`](dockerfiles/windows-1809)
+*   [`windows-core-2019`, `windows-core`](dockerfiles/windows-core-2019)
 *   [`windows-core-1909`](dockerfiles/windows-core-1909)
 *   [`windows-core-1903`](dockerfiles/windows-core-1903)
 *   [`windows-core-1809`](dockerfiles/windows-core-1809)
-*   [`windows-1909`](dockerfiles/windows-1909)
-*   [`windows-1903`](dockerfiles/windows-1903)
-*   [`windows-1809`](dockerfiles/windows-1809)
 
 ## Usage
 
