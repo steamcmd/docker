@@ -2,4 +2,3 @@
 engines:
  hadolint:
    enabled: true
-   base_sub_dir: dockerfiles
