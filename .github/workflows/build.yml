@@ -14,7 +14,7 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/ubuntu-18 -t steamcmd/steamcmd:ubuntu-18 .
+        run: docker build -f dockerfiles/ubuntu-18.dockerfile -t steamcmd/steamcmd:ubuntu-18 .
       - name: Tag Image
         run: for TAG in ubuntu latest; do docker tag steamcmd/steamcmd:ubuntu-18 steamcmd/steamcmd:${TAG}; done
       - name: Push Image
@@ -27,7 +27,7 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/ubuntu-16 -t steamcmd/steamcmd:ubuntu-16 .
+        run: docker build -f dockerfiles/ubuntu-16.dockerfile -t steamcmd/steamcmd:ubuntu-16 .
       - name: Push Image
         run: docker push steamcmd/steamcmd:ubuntu-16
 
@@ -39,7 +39,7 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/alpine -t steamcmd/steamcmd:alpine .
+        run: docker build -f dockerfiles/alpine.dockerfile -t steamcmd/steamcmd:alpine .
       - name: Push Image
         run: docker push steamcmd/steamcmd:alpine
 
@@ -51,7 +51,7 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/busybox -t steamcmd/steamcmd:busybox .
+        run: docker build -f dockerfiles/busybox.dockerfile -t steamcmd/steamcmd:busybox .
       - name: Tag Image
         run: docker tag steamcmd/steamcmd:busybox steamcmd/steamcmd:lite
       - name: Push Image
@@ -65,7 +65,7 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/centos-8 -t steamcmd/steamcmd:centos-8 .
+        run: docker build -f dockerfiles/centos-8.dockerfile -t steamcmd/steamcmd:centos-8 .
       - name: Tag Image
         run: docker tag steamcmd/steamcmd:centos-8 steamcmd/steamcmd:centos
       - name: Push Image
@@ -79,7 +79,7 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/centos-7 -t steamcmd/steamcmd:centos-7 .
+        run: docker build -f dockerfiles/centos-7.dockerfile -t steamcmd/steamcmd:centos-7 .
       - name: Push Image
         run: docker push steamcmd/steamcmd:centos-7
 
@@ -91,7 +91,7 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/centos-6 -t steamcmd/steamcmd:centos-6 .
+        run: docker build -f dockerfiles/centos-6.dockerfile -t steamcmd/steamcmd:centos-6 .
       - name: Push Image
         run: docker push steamcmd/steamcmd:centos-6
 
@@ -102,7 +102,7 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/windows-1809 -t steamcmd/steamcmd:windows-1809 .
+        run: docker build -f dockerfiles/windows-1809.dockerfile -t steamcmd/steamcmd:windows-1809 .
       - name: Tag Image
         run: docker tag steamcmd/steamcmd:windows-1809 steamcmd/steamcmd:windows
       - name: Push Image
@@ -117,7 +117,7 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/windows-core-2019 -t steamcmd/steamcmd:windows-core-2019 .
+        run: docker build -f dockerfiles/windows-core-2019.dockerfile -t steamcmd/steamcmd:windows-core-2019 .
       - name: Tag Image
         run: docker tag steamcmd/steamcmd:windows-core-2019 steamcmd/steamcmd:windows-core
       - name: Push Image
@@ -132,6 +132,6 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/windows-core-1809 -t steamcmd/steamcmd:windows-core-1809 .
+        run: docker build -f dockerfiles/windows-core-1809.dockerfile -t steamcmd/steamcmd:windows-core-1809 .
       - name: Push Image
         run: docker push steamcmd/steamcmd:windows-core-1809
