@@ -1,5 +1,5 @@
 ---
 engines:
  hadolint:
-   include_paths:
-     - 'dockerfiles/*'
+   enabled: true
+   base_sub_dir: dockerfiles
