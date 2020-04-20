@@ -1,4 +1,4 @@
-name: Build and Push Container
+name: Build Images
 on:
   push:
     branches:
