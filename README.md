@@ -6,7 +6,8 @@
 
 # SteamCMD Docker Image
 
-SteamCMD on various Docker base images for downloading and running Steam games and game server software. The images are build automatically every 4 hours with [Github Actions](https://github.com/steamcmd/docker/actions) and tagged on type of base image.
+SteamCMD on various Docker base images for downloading and running Steam games and game server software.
+The images are build automatically every 4 hours with [Github Actions](https://github.com/steamcmd/docker/actions) and tagged on type of base image.
 
 ## Tags
 
@@ -17,13 +18,17 @@ SteamCMD on various Docker base images for downloading and running Steam games a
 *   [`centos-8`, `centos`](dockerfiles/centos-8)
 *   [`centos-7`](dockerfiles/centos-7)
 *   [`centos-6`](dockerfiles/centos-6)
-*   [`windows-core-2019`, `windows-core`, `windows`](dockerfiles/windows-core-2019)
-*   [`windows-core-1909`](dockerfiles/windows-core-1909)
-*   [`windows-core-1903`](dockerfiles/windows-core-1903)
+*   [`windows-1909`](dockerfiles/windows-1909) *(unavailable)*
+*   [`windows-1903`](dockerfiles/windows-1903) *(unavailable)*
+*   [`windows-1809`, `windows`](dockerfiles/windows-1809)
+*   [`windows-core-2019`, `windows-core`](dockerfiles/windows-core-2019)
+*   [`windows-core-1909`](dockerfiles/windows-core-1909) *(unavailable)*
+*   [`windows-core-1903`](dockerfiles/windows-core-1903) *(unavailable)*
 *   [`windows-core-1809`](dockerfiles/windows-core-1809)
-*   [`windows-1909`](dockerfiles/windows-1909)
-*   [`windows-1903`](dockerfiles/windows-1903)
-*   [`windows-1809`](dockerfiles/windows-1809)
+
+> ***Note:*** *Some Windows tags are not available (yet) because they cannot be build on the current Github Actions Windows Platform.*
+> *The Dockerfiles are added to this repository to be able to build manually and for the moment when Github Actions supports newer Windows versions.*
+> *See [this article](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility) on the Microsoft docs for more information on the subject.*
 
 ## Usage
 
