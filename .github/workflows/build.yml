@@ -103,14 +103,12 @@ jobs:
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
         run: docker build -f dockerfiles/windows-1809 -t steamcmd/steamcmd:windows-1809 .
-      - name: Push Image
-        run: docker push steamcmd/steamcmd:windows-1809
       - name: Tag Image
         run: docker tag steamcmd/steamcmd:windows-1809 steamcmd/steamcmd:windows
       - name: Push Image
-        run: |
-          docker push steamcmd/steamcmd:windows-1809; \
-          docker push steamcmd/steamcmd:windows
+        run: docker push steamcmd/steamcmd:windows-1809
+      - name: Push Image
+        run: docker push steamcmd/steamcmd:windows
 
   build-windows-core-2019:
     runs-on: windows-2019
@@ -123,9 +121,9 @@ jobs:
       - name: Tag Image
         run: docker tag steamcmd/steamcmd:windows-core-2019 steamcmd/steamcmd:windows-core
       - name: Push Image
-        run: |
-          docker push steamcmd/steamcmd:windows-core-2019; \
-          docker push steamcmd/steamcmd:windows-core
+        run: docker push steamcmd/steamcmd:windows-core-2019
+      - name: Push Image
+        run: docker push steamcmd/steamcmd:windows-core
 
   build-windows-core-1809:
     runs-on: windows-2019
