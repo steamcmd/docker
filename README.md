@@ -27,7 +27,7 @@ The images are build automatically every 4 hours with [Github Actions](https://g
 *   [`windows-core-1809`](dockerfiles/windows-core-1809)
 
 > ***Note:*** *Some Windows tags are not available (yet) because they cannot be build on the current Github Actions Windows Platform.*
-> *The Dockerfiles are added to this repository so builds can be done locally and it's ready when Github Action supports newer Windows versions.*
+> *The Dockerfiles are added to this repository to be able to build manually and for the moment that Github Actions supports newer Windows versions.*
 > *See [this article](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility) on the Microsoft docs for more information on the subject.*
 
 ## Usage
