@@ -1,11 +1,11 @@
-name: Update Readme
+name: Update Description
 on:
   push:
     branches:
       - master
     paths:
       - README.md
-      - .github/workflows/readme.yml
+      - .github/workflows/description.yml
 
 jobs:
   update-docker-readme:
