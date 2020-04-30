@@ -1,0 +1,20 @@
+file:
+  /usr/bin/steamcmd:
+    # required attributes
+    exists: true
+
+command:
+  steamcmd:
+    # required attributes
+    exit-status: 0
+    # defaults to hash key
+    exec: "steamcmd +quit"
+
+    # required output
+    stdout:
+      - "OK."
+
+    # optional attributes
+    stderr: []
+    timeout: 60000 # in milliseconds
+    skip: false
