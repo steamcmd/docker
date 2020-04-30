@@ -139,7 +139,7 @@ jobs:
       - name: Build Image
         run: docker build -f dockerfiles/windows-1809 -t steamcmd/steamcmd:windows-1809 .
       - name: Test Image
-        run: docker run steamcmd/steamcmd:windows-1809
+        run: docker run steamcmd/steamcmd:windows-1809 +quit
       - name: Tag Image
         run: docker tag steamcmd/steamcmd:windows-1809 steamcmd/steamcmd:windows
       - name: Push Image
@@ -156,7 +156,7 @@ jobs:
       - name: Build Image
         run: docker build -f dockerfiles/windows-core-2019 -t steamcmd/steamcmd:windows-core-2019 .
       - name: Test Image
-        run: docker run steamcmd/steamcmd:windows-core-2019
+        run: docker run steamcmd/steamcmd:windows-core-2019 +quit
       - name: Tag Image
         run: docker tag steamcmd/steamcmd:windows-core-2019 steamcmd/steamcmd:windows-core
       - name: Push Image
@@ -173,6 +173,6 @@ jobs:
       - name: Build Image
         run: docker build -f dockerfiles/windows-core-1809 -t steamcmd/steamcmd:windows-core-1809 .
       - name: Test Image
-        run: docker run steamcmd/steamcmd:windows-core-1809
+        run: docker run steamcmd/steamcmd:windows-core-1809 +quit
       - name: Push Image
         run: docker push steamcmd/steamcmd:windows-core-1809
