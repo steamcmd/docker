@@ -13,8 +13,7 @@ The images are build automatically every 4 hours with [Github Actions](https://g
 
 *   [`ubuntu-18`, `ubuntu`, `latest`](dockerfiles/ubuntu-18)
 *   [`ubuntu-16`](dockerfiles/ubuntu-16)
-*   [`alpine`](dockerfiles/alpine)
-*   [`busybox`, `lite`](dockerfiles/busybox)
+*   [`alpine-3`, `alpine`](dockerfiles/alpine-3)
 *   [`centos-8`, `centos`](dockerfiles/centos-8)
 *   [`centos-7`](dockerfiles/centos-7)
 *   [`centos-6`](dockerfiles/centos-6)

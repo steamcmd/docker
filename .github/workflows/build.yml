@@ -41,28 +41,11 @@ jobs:
       - name: Push Image
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
 
-  build-alpine:
+  build-alpine-3:
     runs-on: ubuntu-18.04
     needs: build-ubuntu-18
     env:
-      IMAGE_TAG: "alpine"
-    steps:
-      - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1
-      - name: Docker Login
-        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -f dockerfiles/$IMAGE_TAG -t steamcmd/steamcmd:$IMAGE_TAG .
-      - name: Test Image
-        run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
-      - name: Push Image
-        run: docker push steamcmd/steamcmd:$IMAGE_TAG
-
-  build-busybox:
-    runs-on: ubuntu-18.04
-    needs: build-ubuntu-18
-    env:
-      IMAGE_TAG: "busybox"
+      IMAGE_TAG: "alpine-3"
     steps:
       - uses: actions/checkout@v2
       - uses: e1himself/goss-installation-action@v1
@@ -73,9 +56,9 @@ jobs:
       - name: Test Image
         run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
       - name: Tag Image
-        run: docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:lite
+        run: docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:alpine
       - name: Push Image
-        run: for TAG in $IMAGE_TAG lite; do docker push steamcmd/steamcmd:${TAG}; done
+        run: for TAG in $IMAGE_TAG alpine; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-centos-8:
     runs-on: ubuntu-18.04
