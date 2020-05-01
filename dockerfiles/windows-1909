@@ -10,26 +10,23 @@ SHELL ["powershell"]
 ENV POWERSHELL_TELEMETRY_OPTOUT 1
 ENV HOME "c:\steamcmd"
 
-# Create system user
-RUN New-LocalUser -Name "steamcmd" -NoPassword -AccountNeverExpires -UserMayNotChangePassword | Set-LocalUser -PasswordNeverExpires $true
-
-# Switch to user
-USER steamcmd
-
 # Create SteamCMD directory
-RUN New-Item -ItemType Directory "c:\steamcmd"
+RUN New-Item -ItemType Directory $HOME
 
 # Set SteamCMD working directory
 WORKDIR $HOME
 
 # Download and unpack SteamCMD archive
-RUN Invoke-WebRequest http://media.steampowered.com/installer/steamcmd.zip -O c:\steamcmd\steamcmd.zip; \
-    Expand-Archive c:\steamcmd\steamcmd.zip -DestinationPath c:\steamcmd; \
-    Remove-Item c:\steamcmd\steamcmd.zip
+RUN Invoke-WebRequest "http://media.steampowered.com/installer/steamcmd.zip" -O "$HOME\steamcmd.zip"; \
+    Expand-Archive "$HOME\steamcmd.zip" -DestinationPath "$HOME"; \
+    Remove-Item "$HOME\steamcmd.zip"
+
+# Create executable alias
+RUN New-Item -Path "c:\windows\system32\steamcmd.exe" -ItemType SymbolicLink -Value "$HOME\steamcmd.exe"
 
 # Update SteamCMD
-RUN c:\steamcmd\steamcmd.exe +quit; exit 0
+RUN steamcmd.exe +quit; exit 0
 
 # Set default command
-ENTRYPOINT c:\steamcmd\steamcmd.exe
+ENTRYPOINT steamcmd.exe
 CMD +help +quit
