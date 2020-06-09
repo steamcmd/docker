@@ -26,11 +26,10 @@ jobs:
         run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
       # master
       - name: Tag Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: for TAG in ubuntu latest; do docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:${TAG}; done
-
       - name: Push Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: for TAG in $IMAGE_TAG ubuntu latest; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-ubuntu-16:
@@ -48,7 +47,7 @@ jobs:
       - name: Test Image
         run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
       - name: Push Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
 
   build-alpine-3:
@@ -67,10 +66,10 @@ jobs:
       - name: Test Image
         run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
       - name: Tag Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:alpine
       - name: Push Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: for TAG in $IMAGE_TAG alpine; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-centos-8:
@@ -89,10 +88,10 @@ jobs:
       - name: Test Image
         run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
       - name: Tag Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:centos
       - name: Push Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: for TAG in $IMAGE_TAG centos; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-centos-7:
@@ -111,7 +110,7 @@ jobs:
       - name: Test Image
         run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
       - name: Push Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
 
   build-centos-6:
@@ -130,7 +129,7 @@ jobs:
       - name: Test Image
         run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
       - name: Push Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
 
   build-windows-1809:
@@ -145,13 +144,13 @@ jobs:
       - name: Test Image
         run: docker run steamcmd/steamcmd:windows-1809 +quit
       - name: Tag Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker tag steamcmd/steamcmd:windows-1809 steamcmd/steamcmd:windows
       - name: Push Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:windows-1809
       - name: Push Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:windows
 
   build-windows-core-2019:
@@ -166,13 +165,13 @@ jobs:
       - name: Test Image
         run: docker run steamcmd/steamcmd:windows-core-2019 +quit
       - name: Tag Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker tag steamcmd/steamcmd:windows-core-2019 steamcmd/steamcmd:windows-core
       - name: Push Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:windows-core-2019
       - name: Push Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:windows-core
 
   build-windows-core-1809:
@@ -187,5 +186,5 @@ jobs:
       - name: Test Image
         run: docker run steamcmd/steamcmd:windows-core-1809 +quit
       - name: Push Image
-        if: ${{ github.ref == 'master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:windows-core-1809
