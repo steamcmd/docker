@@ -126,8 +126,8 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
-        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
+        run: docker build -t steamcmd/steamcmd:windows-1809 .
+        working-directory: dockerfiles/windows-1809
       - name: Test Image
         run: docker run steamcmd/steamcmd:windows-1809 +quit
       - name: Tag Image
@@ -144,8 +144,8 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
-        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
+        run: docker build -t steamcmd/steamcmd:windows-core-2019 .
+        working-directory: dockerfiles/windows-core-2019
       - name: Test Image
         run: docker run steamcmd/steamcmd:windows-core-2019 +quit
       - name: Tag Image
@@ -162,8 +162,8 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
-        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
+        run: docker build -t steamcmd/steamcmd:windows-core-1809 .
+        working-directory: dockerfiles/windows-core-1809
       - name: Test Image
         run: docker run steamcmd/steamcmd:windows-core-1809 +quit
       - name: Push Image
