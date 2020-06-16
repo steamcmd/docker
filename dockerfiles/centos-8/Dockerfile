@@ -29,7 +29,7 @@ ENV USER root
 ENV HOME /root
 
 # Install prerequisites
-RUN yum -y install glibc.i686 libstdc++.i686 \
+RUN yum -y install glibc.i686 libgcc.i686 \
  && yum -y clean all
 
 # Copy steamcmd files from builder
