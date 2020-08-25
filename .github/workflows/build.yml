@@ -132,6 +132,36 @@ jobs:
         if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
 
+  build-windows-1909:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -t steamcmd/steamcmd:windows-1909 .
+        working-directory: dockerfiles/windows-1909
+      - name: Test Image
+        run: docker run steamcmd/steamcmd:windows-1909 +quit
+      - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: docker push steamcmd/steamcmd:windows-1909
+
+  build-windows-1903:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -t steamcmd/steamcmd:windows-1903 .
+        working-directory: dockerfiles/windows-1903
+      - name: Test Image
+        run: docker run steamcmd/steamcmd:windows-1903 +quit
+      - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: docker push steamcmd/steamcmd:windows-1903
+
   build-windows-1809:
     runs-on: windows-2019
     steps:
@@ -173,6 +203,36 @@ jobs:
       - name: Push Image
         if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:windows-core
+
+  build-windows-core-1909:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -t steamcmd/steamcmd:windows-core-1909 .
+        working-directory: dockerfiles/windows-core-1909
+      - name: Test Image
+        run: docker run steamcmd/steamcmd:windows-core-1909 +quit
+      - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: docker push steamcmd/steamcmd:windows-core-1909
+
+  build-windows-core-1903:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -t steamcmd/steamcmd:windows-core-1903 .
+        working-directory: dockerfiles/windows-core-1903
+      - name: Test Image
+        run: docker run steamcmd/steamcmd:windows-core-1903 +quit
+      - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: docker push steamcmd/steamcmd:windows-core-1903
 
   build-windows-core-1809:
     runs-on: windows-2019
