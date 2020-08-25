@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
   schedule:
     - cron: '0 */4 * * *'
 
@@ -17,12 +20,16 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/$IMAGE_TAG -t steamcmd/steamcmd:$IMAGE_TAG .
+        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
+        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
       - name: Test Image
         run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
+      # master
       - name: Tag Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: for TAG in ubuntu latest; do docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:${TAG}; done
       - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: for TAG in $IMAGE_TAG ubuntu latest; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-ubuntu-16:
@@ -35,10 +42,12 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/$IMAGE_TAG -t steamcmd/steamcmd:$IMAGE_TAG .
+        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
+        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
       - name: Test Image
         run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
       - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
 
   build-alpine-3:
@@ -52,12 +61,15 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/$IMAGE_TAG -t steamcmd/steamcmd:$IMAGE_TAG .
+        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
+        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
       - name: Test Image
         run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
       - name: Tag Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:alpine
       - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: for TAG in $IMAGE_TAG alpine; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-centos-8:
@@ -71,12 +83,15 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/$IMAGE_TAG -t steamcmd/steamcmd:$IMAGE_TAG .
+        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
+        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
       - name: Test Image
         run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
       - name: Tag Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:centos
       - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: for TAG in $IMAGE_TAG centos; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-centos-7:
@@ -90,10 +105,12 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/$IMAGE_TAG -t steamcmd/steamcmd:$IMAGE_TAG .
+        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
+        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
       - name: Test Image
         run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
       - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
 
   build-centos-6:
@@ -107,10 +124,12 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/$IMAGE_TAG -t steamcmd/steamcmd:$IMAGE_TAG .
+        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
+        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
       - name: Test Image
         run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
       - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
 
   build-windows-1809:
@@ -120,14 +139,18 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/windows-1809 -t steamcmd/steamcmd:windows-1809 .
+        run: docker build -t steamcmd/steamcmd:windows-1809 .
+        working-directory: dockerfiles/windows-1809
       - name: Test Image
         run: docker run steamcmd/steamcmd:windows-1809 +quit
       - name: Tag Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker tag steamcmd/steamcmd:windows-1809 steamcmd/steamcmd:windows
       - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:windows-1809
       - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:windows
 
   build-windows-core-2019:
@@ -137,14 +160,18 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/windows-core-2019 -t steamcmd/steamcmd:windows-core-2019 .
+        run: docker build -t steamcmd/steamcmd:windows-core-2019 .
+        working-directory: dockerfiles/windows-core-2019
       - name: Test Image
         run: docker run steamcmd/steamcmd:windows-core-2019 +quit
       - name: Tag Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker tag steamcmd/steamcmd:windows-core-2019 steamcmd/steamcmd:windows-core
       - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:windows-core-2019
       - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:windows-core
 
   build-windows-core-1809:
@@ -154,8 +181,10 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -f dockerfiles/windows-core-1809 -t steamcmd/steamcmd:windows-core-1809 .
+        run: docker build -t steamcmd/steamcmd:windows-core-1809 .
+        working-directory: dockerfiles/windows-core-1809
       - name: Test Image
         run: docker run steamcmd/steamcmd:windows-core-1809 +quit
       - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:windows-core-1809

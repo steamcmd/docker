@@ -12,7 +12,7 @@ WORKDIR $HOME
 
 # Install prerequisites
 RUN apt-get update \
- && apt-get install -y curl tar
+ && apt-get install -y --no-install-recommends curl tar
 
 # Donload and unpack installer
 RUN curl http://media.steampowered.com/installer/steamcmd_linux.tar.gz \
@@ -22,14 +22,14 @@ RUN tar -xvzf steamcmd.tar.gz && rm steamcmd.tar.gz
 ######## INSTALL ########
 
 # Set the base image
-FROM centos:6
+FROM centos:8
 
 # Set environment variables
 ENV USER root
 ENV HOME /root
 
 # Install prerequisites
-RUN yum -y install glibc.i686 libstdc++.i686 \
+RUN yum -y install glibc.i686 libgcc.i686 \
  && yum -y clean all
 
 # Copy steamcmd files from builder

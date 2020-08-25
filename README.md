@@ -1,5 +1,5 @@
 [![Build Status](https://img.shields.io/github/workflow/status/steamcmd/docker/Build%20Images.svg?logo=github)](https://github.com/steamcmd/docker/actions)
-[![Codacy Grade](https://img.shields.io/codacy/grade/ac5825743b9643049d78279bdaa289fc.svg?logo=codacy)](https://www.codacy.com/gh/steamcmd/docker)
+[![CodeFactor](https://www.codefactor.io/repository/github/steamcmd/docker/badge)](https://www.codefactor.io/repository/github/steamcmd/docker)
 [![Docker Pulls](https://img.shields.io/docker/pulls/steamcmd/steamcmd.svg)](https://hub.docker.com/r/steamcmd/steamcmd)
 [![Image Size](https://img.shields.io/docker/image-size/steamcmd/steamcmd/latest.svg)](https://hub.docker.com/r/steamcmd/steamcmd)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -11,19 +11,19 @@ The images are build automatically every 4 hours with [Github Actions](https://g
 
 ## Tags
 
-*   [`ubuntu-18`, `ubuntu`, `latest`](dockerfiles/ubuntu-18)
-*   [`ubuntu-16`](dockerfiles/ubuntu-16)
-*   [`alpine-3`, `alpine`](dockerfiles/alpine-3)
-*   [`centos-8`, `centos`](dockerfiles/centos-8)
-*   [`centos-7`](dockerfiles/centos-7)
-*   [`centos-6`](dockerfiles/centos-6)
-*   [`windows-1909`](dockerfiles/windows-1909) *(unavailable)*
-*   [`windows-1903`](dockerfiles/windows-1903) *(unavailable)*
-*   [`windows-1809`, `windows`](dockerfiles/windows-1809)
-*   [`windows-core-2019`, `windows-core`](dockerfiles/windows-core-2019)
-*   [`windows-core-1909`](dockerfiles/windows-core-1909) *(unavailable)*
-*   [`windows-core-1903`](dockerfiles/windows-core-1903) *(unavailable)*
-*   [`windows-core-1809`](dockerfiles/windows-core-1809)
+*   [`ubuntu-18`, `ubuntu`, `latest`](dockerfiles/ubuntu-18/Dockerfile)
+*   [`ubuntu-16`](dockerfiles/ubuntu-16/Dockerfile)
+*   [`alpine-3`, `alpine`](dockerfiles/alpine-3/Dockerfile)
+*   [`centos-8`, `centos`](dockerfiles/centos-8/Dockerfile)
+*   [`centos-7`](dockerfiles/centos-7/Dockerfile)
+*   [`centos-6`](dockerfiles/centos-6/Dockerfile)
+*   [`windows-1909`](dockerfiles/windows-1909/Dockerfile) *(unavailable)*
+*   [`windows-1903`](dockerfiles/windows-1903/Dockerfile) *(unavailable)*
+*   [`windows-1809`, `windows`](dockerfiles/windows-1809/Dockerfile)
+*   [`windows-core-2019`, `windows-core`](dockerfiles/windows-core-2019/Dockerfile)
+*   [`windows-core-1909`](dockerfiles/windows-core-1909/Dockerfile) *(unavailable)*
+*   [`windows-core-1903`](dockerfiles/windows-core-1903/Dockerfile) *(unavailable)*
+*   [`windows-core-1809`](dockerfiles/windows-core-1809/Dockerfile)
 
 > ***Note:*** *Some Windows tags are not available (yet) because they cannot be build on the current Github Actions Windows Platform.*
 > *The Dockerfiles are added to this repository to be able to build manually and for the moment when Github Actions supports newer Windows versions.*
