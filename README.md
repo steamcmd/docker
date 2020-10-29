@@ -7,7 +7,7 @@
 # SteamCMD Docker Image
 
 SteamCMD on various Docker base images for downloading and running Steam games and game server software.
-The images are build automatically every 4 hours with [Github Actions](https://github.com/steamcmd/docker/actions) and tagged on type of base image.
+The images are build automatically every 6 hours with [Github Actions](https://github.com/steamcmd/docker/actions) and tagged on type of base image.
 
 ## Tags
 
