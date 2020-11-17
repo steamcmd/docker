@@ -16,14 +16,13 @@ jobs:
       IMAGE_TAG: "ubuntu-18"
     steps:
       - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
         run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
         working-directory: dockerfiles/${{ env.IMAGE_TAG }}
       - name: Test Image
-        run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
+        run: docker run steamcmd/steamcmd:$IMAGE_TAG +quit
       # master
       - name: Tag Image
         if: ${{ github.ref == 'refs/heads/master' }}
@@ -38,14 +37,13 @@ jobs:
       IMAGE_TAG: "ubuntu-16"
     steps:
       - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
         run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
         working-directory: dockerfiles/${{ env.IMAGE_TAG }}
       - name: Test Image
-        run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
+        run: docker run steamcmd/steamcmd:$IMAGE_TAG +quit
       - name: Push Image
         if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
@@ -57,14 +55,13 @@ jobs:
       IMAGE_TAG: "alpine-3"
     steps:
       - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
         run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
         working-directory: dockerfiles/${{ env.IMAGE_TAG }}
       - name: Test Image
-        run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
+        run: docker run steamcmd/steamcmd:$IMAGE_TAG +quit
       - name: Tag Image
         if: ${{ github.ref == 'refs/heads/master' }}
         run: docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:alpine
@@ -79,14 +76,13 @@ jobs:
       IMAGE_TAG: "centos-8"
     steps:
       - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
         run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
         working-directory: dockerfiles/${{ env.IMAGE_TAG }}
       - name: Test Image
-        run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
+        run: docker run steamcmd/steamcmd:$IMAGE_TAG +quit
       - name: Tag Image
         if: ${{ github.ref == 'refs/heads/master' }}
         run: docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:centos
@@ -101,14 +97,13 @@ jobs:
       IMAGE_TAG: "centos-7"
     steps:
       - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
         run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
         working-directory: dockerfiles/${{ env.IMAGE_TAG }}
       - name: Test Image
-        run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
+        run: docker run steamcmd/steamcmd:$IMAGE_TAG +quit
       - name: Push Image
         if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
@@ -120,14 +115,13 @@ jobs:
       IMAGE_TAG: "centos-6"
     steps:
       - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
         run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
         working-directory: dockerfiles/${{ env.IMAGE_TAG }}
       - name: Test Image
-        run: dgoss run --entrypoint="" steamcmd/steamcmd:$IMAGE_TAG sleep 120
+        run: docker run steamcmd/steamcmd:$IMAGE_TAG +quit
       - name: Push Image
         if: ${{ github.ref == 'refs/heads/master' }}
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
