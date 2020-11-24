@@ -12,8 +12,6 @@ on:
 jobs:
   build-ubuntu-18:
     runs-on: ubuntu-18.04
-    env:
-      IMAGE_TAG: "ubuntu-18"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -35,18 +33,18 @@ jobs:
       - name: Only build image
         uses: docker/build-push-action@v2
         with:
-          context: dockerfiles/${{ env.IMAGE_TAG }}
+          context: dockerfiles/ubuntu-18
           file: ./Dockerfile
           push: false
           load: true
-          tags: steamcmd/steamcmd:${{ env.IMAGE_TAG }}
+          tags: steamcmd/steamcmd:ubuntu-18
       - name: Run and test container
-        run: docker run -t steamcmd/steamcmd:${{ env.IMAGE_TAG }}
+        run: docker run -t steamcmd/steamcmd:ubuntu-18
       - name: Build and push image
         if: ${{ github.ref == 'refs/heads/master' }}
         uses: docker/build-push-action@v2
         with:
-          context: dockerfiles/${{ env.IMAGE_TAG }}
+          context: dockerfiles/ubuntu-18
           file: ./Dockerfile
           push: true
           load: false
