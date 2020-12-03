@@ -17,7 +17,6 @@ The images are build automatically every 6 hours with [Github Actions](https://g
 *   [`alpine-3`, `alpine`](dockerfiles/alpine-3/Dockerfile)
 *   [`centos-8`, `centos`](dockerfiles/centos-8/Dockerfile)
 *   [`centos-7`](dockerfiles/centos-7/Dockerfile)
-*   [`centos-6`](dockerfiles/centos-6/Dockerfile)
 *   [`windows-1909`](dockerfiles/windows-1909/Dockerfile) *(unavailable)*
 *   [`windows-1903`](dockerfiles/windows-1903/Dockerfile) *(unavailable)*
 *   [`windows-1809`, `windows`](dockerfiles/windows-1809/Dockerfile)
