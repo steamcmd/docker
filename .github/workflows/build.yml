@@ -27,9 +27,12 @@ jobs:
       - name: Test Image
         run: dgoss run steamcmd/steamcmd:$IMAGE_TAG --entrypoint=""
       # master
+      - name: Tag Image
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: for TAG in ubuntu latest; do docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:${TAG}; done
       - name: Push Image
         if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker push steamcmd/steamcmd:$IMAGE_TAG
+        run: for TAG in $IMAGE_TAG ubuntu latest; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-ubuntu-18:
     runs-on: ubuntu-18.04
@@ -48,12 +51,9 @@ jobs:
       - name: Test Image
         run: dgoss run steamcmd/steamcmd:$IMAGE_TAG --entrypoint=""
       # master
-      - name: Tag Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: for TAG in ubuntu latest; do docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:${TAG}; done
       - name: Push Image
         if: ${{ github.ref == 'refs/heads/master' }}
-        run: for TAG in $IMAGE_TAG ubuntu latest; do docker push steamcmd/steamcmd:${TAG}; done
+        run: docker push steamcmd/steamcmd:$IMAGE_TAG
 
   build-ubuntu-16:
     runs-on: ubuntu-18.04
