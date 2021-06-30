@@ -10,10 +10,10 @@ on:
     - cron: '0 */4 * * *'
 
 jobs:
-  build-ubuntu-18:
+  build-ubuntu-20:
     runs-on: ubuntu-18.04
     env:
-      IMAGE_TAG: "ubuntu-18"
+      IMAGE_TAG: "ubuntu-20"
     steps:
       - uses: actions/checkout@v2
       - uses: e1himself/goss-installation-action@v1
@@ -32,10 +32,10 @@ jobs:
         if: ${{ github.ref == 'refs/heads/master' }}
         run: for TAG in $IMAGE_TAG ubuntu latest; do docker push steamcmd/steamcmd:${TAG}; done
 
-  build-ubuntu-20:
+  build-ubuntu-18:
     runs-on: ubuntu-18.04
     env:
-      IMAGE_TAG: "ubuntu-20"
+      IMAGE_TAG: "ubuntu-18"
     steps:
       - uses: actions/checkout@v2
       - uses: e1himself/goss-installation-action@v1
