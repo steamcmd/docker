@@ -22,7 +22,7 @@ RUN tar -xvzf steamcmd.tar.gz && rm steamcmd.tar.gz
 ######## INSTALL ########
 
 # Set the base image
-FROM frolvlad/alpine-glibc:latest
+FROM frolvlad/alpine-glibc:alpine-3.14
 
 # Set environment variables
 ENV USER root
