@@ -1,0 +1,12 @@
+name: Keepalive Workflows
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  create-keepalive-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create Keepalive Commit
+        uses: gautamkrishnar/keepalive-workflow@master
