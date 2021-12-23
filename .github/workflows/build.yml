@@ -124,7 +124,7 @@ jobs:
         run: docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:rocky
       - name: Push Image
         if: ${{ github.ref == 'refs/heads/master' }}
-        run: for TAG in $IMAGE_TAG centos; do docker push steamcmd/steamcmd:${TAG}; done
+        run: for TAG in $IMAGE_TAG rocky; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-centos-8:
     runs-on: ubuntu-18.04
