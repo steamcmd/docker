@@ -101,6 +101,31 @@ jobs:
         if: ${{ github.ref == 'refs/heads/master' }}
         run: for TAG in $IMAGE_TAG alpine; do docker push steamcmd/steamcmd:${TAG}; done
 
+  build-rocky-8:
+    runs-on: ubuntu-18.04
+    needs: build-ubuntu-18
+    env:
+      IMAGE_TAG: "rocky-8"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: e1himself/goss-installation-action@v1.0.3
+        with:
+          version: 'v0.3.14'
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
+        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
+      - name: Test Image
+        run: dgoss run steamcmd/steamcmd:$IMAGE_TAG --entrypoint=""
+      # master
+      - name: Tag Image
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:rocky
+      - name: Push Image
+        if: ${{ github.ref == 'refs/heads/master' }}
+        run: for TAG in $IMAGE_TAG centos; do docker push steamcmd/steamcmd:${TAG}; done
+
   build-centos-8:
     runs-on: ubuntu-18.04
     needs: build-ubuntu-18
