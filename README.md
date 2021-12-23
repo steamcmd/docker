@@ -23,6 +23,7 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 *   [`ubuntu-18`](dockerfiles/ubuntu-18/Dockerfile)
 *   [`ubuntu-16`](dockerfiles/ubuntu-16/Dockerfile)
 *   [`alpine-3`, `alpine`](dockerfiles/alpine-3/Dockerfile)
+*   [`rocky-8`, `rocky`](dockerfiles/rocky-8/Dockerfile)
 *   [`centos-8`, `centos`](dockerfiles/centos-8/Dockerfile)
 *   [`centos-7`](dockerfiles/centos-7/Dockerfile)
 *   [`windows-1909`](dockerfiles/windows-1909/Dockerfile) *(unavailable)*
