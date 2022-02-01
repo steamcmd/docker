@@ -24,10 +24,8 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 *   [`ubuntu-16`](dockerfiles/ubuntu-16/Dockerfile)
 *   [`alpine-3`, `alpine`](dockerfiles/alpine-3/Dockerfile)
 *   [`rocky-8`, `rocky`](dockerfiles/rocky-8/Dockerfile)
-*   [`centos-stream-9`, `centos-stream`](dockerfiles/centos-stream-9/Dockerfile)
-*   [`centos-stream-8`](dockerfiles/centos-7/Dockerfile)
-*   [`centos-8`, `centos`](dockerfiles/centos-8/Dockerfile)
-*   [`centos-7`](dockerfiles/centos-7/Dockerfile)
+*   [`centos-9`, `centos`](dockerfiles/centos-9/Dockerfile)
+*   [`centos-8`](dockerfiles/centos-8/Dockerfile)
 *   [`windows-1909`](dockerfiles/windows-1909/Dockerfile) *(unavailable)*
 *   [`windows-1903`](dockerfiles/windows-1903/Dockerfile) *(unavailable)*
 *   [`windows-1809`, `windows`](dockerfiles/windows-1809/Dockerfile)
@@ -45,9 +43,9 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 > *on the Microsoft docs for more information on the subject.*
 
 > ***Note:***
-> *Regular CentOS images and CentOS Stream images are currently build and tagged*
-> *separately. Eventually the Stream images will replace the regular CentOS tags*
-> *As an alternative to CentOS Stream, Rocky Linux images are also available.*
+> *The CentOS images are based on CentOS Stream images seeing the old images are*
+> *deprecated. If the "old style" of CentOS images are needed, the Rocky Linux*
+> *are recommended as an alternative.*
 
 ## Usage
 
