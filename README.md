@@ -37,7 +37,7 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 
 > ***Note:***
 > *Some Windows tags are not available (yet) because they cannot be*
-> *build on the current Github Actions Windows Platform. The Dockerfiles are
+> *build on the current Github Actions Windows Platform. The Dockerfiles are*
 > *added to this repository to be able to build manually and for the moment when*
 > *Github Actions supports newer Windows versions. See*
 > *[this article](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility)*
