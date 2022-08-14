@@ -27,9 +27,11 @@ jobs:
       # master
       - name: Tag Image
         run: >
-          for %TAG in (${{ inputs.tags }})
-          do
-            docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:%TAG
+          $tags = "${{ inputs.tags }}";
+          foreach ($tag in $tags.split(","))
+          {
+            docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:$tag
+          }
         if: ${{ (github.ref == 'refs/heads/master') && (inputs.tags != '') }}
       - name: Push Image
         run: docker push steamcmd/steamcmd --all-tags
