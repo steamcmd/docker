@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-ubuntu-20:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     env:
       IMAGE_TAG: "ubuntu-20"
       IMAGE_TAG_ALT: "ubuntu"
@@ -36,7 +36,7 @@ jobs:
         run: for TAG in $IMAGE_TAG $IMAGE_TAG_ALT latest; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-ubuntu-18:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     env:
       IMAGE_TAG: "ubuntu-18"
     steps:
@@ -57,7 +57,7 @@ jobs:
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
 
   build-ubuntu-16:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     env:
       IMAGE_TAG: "ubuntu-16"
     steps:
@@ -78,8 +78,8 @@ jobs:
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
 
   build-alpine-3:
-    runs-on: ubuntu-18.04
-    needs: build-ubuntu-18
+    runs-on: ubuntu-20.04
+    needs: build-ubuntu-20
     env:
       IMAGE_TAG: "alpine-3"
       IMAGE_TAG_ALT: "alpine"
@@ -104,8 +104,8 @@ jobs:
         run: for TAG in $IMAGE_TAG $IMAGE_TAG_ALT; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-rocky-9:
-    runs-on: ubuntu-18.04
-    needs: build-ubuntu-18
+    runs-on: ubuntu-20.04
+    needs: build-ubuntu-20
     env:
       IMAGE_TAG: "rocky-9"
       IMAGE_TAG_ALT: "rocky"
@@ -130,8 +130,8 @@ jobs:
         run: for TAG in $IMAGE_TAG $IMAGE_TAG_ALT; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-rocky-8:
-    runs-on: ubuntu-18.04
-    needs: build-ubuntu-18
+    runs-on: ubuntu-20.04
+    needs: build-ubuntu-20
     env:
       IMAGE_TAG: "rocky-8"
     steps:
@@ -152,8 +152,8 @@ jobs:
         run: docker push steamcmd/steamcmd:$IMAGE_TAG
 
   build-centos-9:
-    runs-on: ubuntu-18.04
-    needs: build-ubuntu-18
+    runs-on: ubuntu-20.04
+    needs: build-ubuntu-20
     env:
       IMAGE_TAG: "centos-9"
       IMAGE_TAG_ALT: "centos"
@@ -178,8 +178,8 @@ jobs:
         run: for TAG in $IMAGE_TAG $IMAGE_TAG_ALT; do docker push steamcmd/steamcmd:${TAG}; done
 
   build-centos-8:
-    runs-on: ubuntu-18.04
-    needs: build-ubuntu-18
+    runs-on: ubuntu-20.04
+    needs: build-ubuntu-20
     env:
       IMAGE_TAG: "centos-8"
     steps:
