@@ -1,4 +1,4 @@
-name: Build Image Template
+name: Build Linux Image Template
 on:
   workflow_call:
     inputs:
@@ -6,18 +6,13 @@ on:
         type: string
         required: true
         description: "Name of main tag and workflow file."
-      type:
-        type: string
-        required: true
-        description: "Operating system to use. Choices are: linux/windows."
       tags:
         type: string
         required: false
         description: "Extra tags to use besides main tag."
 
 jobs:
-  linux:
-    if: inputs.type == 'linux'
+  build:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -31,31 +26,6 @@ jobs:
         working-directory: dockerfiles/${{ inputs.name }}
       - name: Test Image
         run: dgoss run steamcmd/steamcmd:${{ inputs.name }} --entrypoint=""
-
-      # master
-      - name: Tag Image
-        run: >
-          for TAG in ${{ inputs.tags }};
-          do
-            docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:${TAG};
-          done
-        if: ${{ (github.ref == 'refs/heads/master') && (inputs.tags != '') }}
-      - name: Push Image
-        run: docker push steamcmd/steamcmd --all-tags
-        if: ${{ github.ref == 'refs/heads/master' }}
-
-  windows:
-    if: inputs.type == 'windows'
-    runs-on: windows-2019
-    steps:
-      - uses: actions/checkout@v2
-      - name: Docker Login
-        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -t steamcmd/steamcmd:${{ inputs.name }} .
-        working-directory: dockerfiles/${{ inputs.name }}
-      - name: Test Image
-        run: docker run steamcmd/steamcmd:${{ inputs.name }} +quit
 
       # master
       - name: Tag Image

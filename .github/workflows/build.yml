@@ -11,85 +11,74 @@ on:
 
 jobs:
   ## linux / ubuntu
-  build-ubuntu-20:
-    uses: ./.github/workflows/_build.yml
+  ubuntu-20:
+    uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: ubuntu-20
       tags: ubuntu latest
-      type: linux
-  build-ubuntu-18:
-    uses: ./.github/workflows/_build.yml
+  ubuntu-18:
+    uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: ubuntu-18
-      type: linux
-  build-ubuntu-16:
-    uses: ./.github/workflows/_build.yml
+  ubuntu-16:
+    uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: ubuntu-16
-      type: linux
 
   ## linux / alpine
-  build-alpine-3:
-    uses: ./.github/workflows/_build.yml
+  alpine-3:
+    uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: alpine-3
       tags: alpine
-      type: linux
 
   ## linux / rocky
-  build-rocky-9:
-    uses: ./.github/workflows/_build.yml
+  rocky-9:
+    uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: rocky-9
       tags: rocky
-      type: linux
-  build-rocky-8:
-    uses: ./.github/workflows/_build.yml
+  rocky-8:
+    uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: rocky-8
-      type: linux
 
   ## linux / centos
-  build-centos-9:
-    uses: ./.github/workflows/_build.yml
+  centos-9:
+    uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: centos-9
       tags: centos
-      type: linux
-  build-centos-8:
-    uses: ./.github/workflows/_build.yml
+  centos-8:
+    uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: centos-8
-      type: linux
 
   ## windows / default
-  build-windows-1809:
-    uses: ./.github/workflows/_build.yml
+  windows-1809:
+    uses: ./.github/workflows/_build-windows.yml
     secrets: inherit
     with:
       name: windows-1809
       tags: windows
-      type: windows
 
   ## windows / core
-  build-windows-core-2019:
-    uses: ./.github/workflows/_build.yml
+  windows-core-2019:
+    uses: ./.github/workflows/_build-windows.yml
     secrets: inherit
     with:
       name: windows-core-2019
       tags: windows-core
-      type: windows
-  build-windows-core-1809:
-    uses: ./.github/workflows/_build.yml
+  windows-core-1809:
+    uses: ./.github/workflows/_build-windows.yml
     secrets: inherit
     with:
       name: windows-core-1809
-      type: windows
