@@ -14,6 +14,11 @@ on:
         type: string
         required: false
         description: "Extra tags to use besides main tag."
+    secrets:
+      DOCKER_USERNAME:
+        required: true
+      DOCKER_ACCESS_TOKEN:
+        required: true
 
 jobs:
   build:
