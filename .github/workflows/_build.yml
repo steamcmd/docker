@@ -28,8 +28,8 @@ jobs:
       - name: Build Image
         run: docker build -t steamcmd/steamcmd:${{ inputs.name }} .
         working-directory: dockerfiles/${{ inputs.name }}
-      - name: Test Image
-        run: dgoss run steamcmd/steamcmd:${{ inputs.name }} --entrypoint=""
+      #- name: Test Image
+      #  run: dgoss run steamcmd/steamcmd:${{ inputs.name }} --entrypoint=""
 
       - name: Test Loop #1
         run: for TAG in $(echo {{ inputs.tags }} ${{ inputs.name }}; do docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:${TAG}; done
