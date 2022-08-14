@@ -2,6 +2,10 @@ name: Build Linux Image Template
 on:
   workflow_call:
     inputs:
+      name:
+        type: string
+        required: true
+        description: "Name of main tag and workflow file."
       tags:
         type: string
         required: false
@@ -18,17 +22,17 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -t steamcmd/steamcmd:${{ github.job }} .
-        working-directory: dockerfiles/${{ github.job }}
+        run: docker build -t steamcmd/steamcmd:${{ inputs.name }} .
+        working-directory: dockerfiles/${{ inputs.name }}
       - name: Test Image
-        run: dgoss run steamcmd/steamcmd:${{ github.job }} --entrypoint=""
+        run: dgoss run steamcmd/steamcmd:${{ inputs.name }} --entrypoint=""
 
       # master
       - name: Tag Image
         run: >
           for TAG in ${{ inputs.tags }};
           do
-            docker tag steamcmd/steamcmd:${{ github.job }} steamcmd/steamcmd:${TAG};
+            docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:${TAG};
           done
         if: ${{ (github.ref == 'refs/heads/master') && (inputs.tags != '') }}
       - name: Push Image

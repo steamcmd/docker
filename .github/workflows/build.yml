@@ -15,13 +15,18 @@ jobs:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
+      name: ubuntu-20
       tags: ubuntu latest
   ubuntu-18:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
+    with:
+      name: ubuntu-18
   ubuntu-16:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
+    with:
+      name: ubuntu-16
 
   ## linux / alpine
   alpine-3:
@@ -29,6 +34,7 @@ jobs:
     needs: ubuntu-20
     secrets: inherit
     with:
+      name: alpine-3
       tags: alpine
 
   ## linux / rocky
@@ -37,11 +43,14 @@ jobs:
     needs: ubuntu-20
     secrets: inherit
     with:
+      name: rocky-9
       tags: rocky
   rocky-8:
     uses: ./.github/workflows/_build-linux.yml
     needs: ubuntu-20
     secrets: inherit
+    with:
+      name: rocky-8
 
   ## linux / centos
   centos-9:
@@ -49,17 +58,21 @@ jobs:
     needs: ubuntu-20
     secrets: inherit
     with:
+      name: centos-9
       tags: centos
   centos-8:
     uses: ./.github/workflows/_build-linux.yml
     needs: ubuntu-20
     secrets: inherit
+    with:
+      name: centos-8
 
   ## windows / default
   windows-1809:
     uses: ./.github/workflows/_build-windows.yml
     secrets: inherit
     with:
+      name: windows-1809
       tags: windows
 
   ## windows / core
@@ -67,7 +80,10 @@ jobs:
     uses: ./.github/workflows/_build-windows.yml
     secrets: inherit
     with:
+      name: windows-core-2019
       tags: windows-core
   windows-core-1809:
     uses: ./.github/workflows/_build-windows.yml
     secrets: inherit
+    with:
+      name: windows-core-1809
