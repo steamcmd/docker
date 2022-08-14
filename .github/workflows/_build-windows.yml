@@ -15,10 +15,10 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker build -t steamcmd/steamcmd:${{ env.GITHUB_JOB }} .
-        working-directory: dockerfiles/${{ env.GITHUB_JOB }}
+        run: docker build -t steamcmd/steamcmd:${{ github.job }}.
+        working-directory: dockerfiles/${{ github.job }}
       - name: Test Image
-        run: docker run steamcmd/steamcmd:${{ env.GITHUB_JOB }} +quit
+        run: docker run steamcmd/steamcmd:${{ github.job }} +quit
 
       # master
       - name: Tag Image
