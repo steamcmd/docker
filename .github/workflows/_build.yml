@@ -32,7 +32,7 @@ jobs:
       #  run: dgoss run steamcmd/steamcmd:${{ inputs.name }} --entrypoint=""
 
       - name: Test Loop #1
-        run: for TAG in $(echo {{ inputs.tags }}) ${{ inputs.name }}; do docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:${TAG}; done
+        run: for TAG in $(echo ${{ inputs.tags }}) ${{ inputs.name }}; do docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:${TAG}; done
         if: ${{ inputs.tags != '' }}
 
       - name: Test Loop #2
