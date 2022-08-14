@@ -15,6 +15,7 @@ jobs:
     with:
       name: actions-test
       tags: "jona"
+      type: "linux"
 
   build-ubuntu-20:
     runs-on: ubuntu-20.04
