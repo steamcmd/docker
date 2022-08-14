@@ -31,7 +31,7 @@ jobs:
   ## linux / alpine
   alpine-3:
     uses: ./.github/workflows/_build-linux.yml
-    needs: build-ubuntu-20
+    needs: ubuntu-20
     secrets: inherit
     with:
       name: alpine-3
@@ -40,14 +40,14 @@ jobs:
   ## linux / rocky
   rocky-9:
     uses: ./.github/workflows/_build-linux.yml
-    needs: build-ubuntu-20
+    needs: ubuntu-20
     secrets: inherit
     with:
       name: rocky-9
       tags: rocky
   rocky-8:
     uses: ./.github/workflows/_build-linux.yml
-    needs: build-ubuntu-20
+    needs: ubuntu-20
     secrets: inherit
     with:
       name: rocky-8
@@ -55,14 +55,14 @@ jobs:
   ## linux / centos
   centos-9:
     uses: ./.github/workflows/_build-linux.yml
-    needs: build-ubuntu-20
+    needs: ubuntu-20
     secrets: inherit
     with:
       name: centos-9
       tags: centos
   centos-8:
     uses: ./.github/workflows/_build-linux.yml
-    needs: build-ubuntu-20
+    needs: ubuntu-20
     secrets: inherit
     with:
       name: centos-8
