@@ -19,7 +19,7 @@ on:
         description: "Extra tags to use besides main tag."
 
 jobs:
-  build:
+  linux:
     if: inputs.type == 'linux'
     runs-on: ubuntu-20.04
     steps:
@@ -47,7 +47,7 @@ jobs:
         run: docker push steamcmd/steamcmd --all-tags
         if: ${{ github.ref == 'refs/heads/master' }}
 
-  build:
+  windows:
     if: inputs.type == 'windows'
     runs-on: windows-2019
     steps:
