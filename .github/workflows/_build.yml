@@ -16,7 +16,7 @@ on:
         description: "Extra tags to use besides main tag."
 
 jobs:
-  build-${{ inputs.name }}:
+  build:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
