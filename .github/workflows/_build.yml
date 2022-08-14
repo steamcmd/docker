@@ -7,10 +7,7 @@ on:
         required: true
         description: "Name of main tag and workflow file."
       type:
-        type: choice
-        options:
-          - linux
-          - windows
+        type: string
         required: true
         description: "Operating system to use. Choices are: linux/windows."
       tags:
