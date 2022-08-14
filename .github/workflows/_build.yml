@@ -33,7 +33,7 @@ jobs:
 
       - name: Test Loop #1
         run: for TAG in $(echo {{ inputs.tags }} ${{ inputs.name }}; do docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:${TAG}; done
-        if: ${{ (github.ref == 'refs/heads/use-and-run-ubuntu-20') && (inputs.tags != '') }}
+        if: ${{ inputs.tags != '' }}
 
       - name: Test Loop #2
         run: docker images
