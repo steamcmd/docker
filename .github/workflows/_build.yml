@@ -1,7 +1,6 @@
 name: Build Image Template
 on:
   workflow_call:
-    secrets: inherit
     inputs:
       name:
         type: string

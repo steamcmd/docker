@@ -12,6 +12,7 @@ on:
 jobs:
   build-ubuntu-20-test:
     uses: ./.github/workflows/_build.yml
+    secrets: inherit
     with:
       name: actions-test
       tags: "jona"
