@@ -2,6 +2,10 @@ name: Build Windows Image Template
 on:
   workflow_call:
     inputs:
+      name:
+        type: string
+        required: true
+        description: "Name of main tag and workflow file."
       tags:
         type: string
         required: false
