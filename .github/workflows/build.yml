@@ -10,251 +10,80 @@ on:
     - cron: '0 */6 * * *'
 
 jobs:
-  build-ubuntu-20:
-    runs-on: ubuntu-18.04
-    env:
-      IMAGE_TAG: "ubuntu-20"
-      IMAGE_TAG_ALT: "ubuntu"
-    steps:
-      - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1.0.3
-        with:
-          version: 'v0.3.14'
-      - name: Docker Login
-        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
-        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
-      - name: Test Image
-        run: dgoss run steamcmd/steamcmd:$IMAGE_TAG --entrypoint=""
-      # master
-      - name: Tag Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: for TAG in $IMAGE_TAG_ALT latest; do docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:${TAG}; done
-      - name: Push Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: for TAG in $IMAGE_TAG $IMAGE_TAG_ALT latest; do docker push steamcmd/steamcmd:${TAG}; done
+  ## linux / ubuntu
+  ubuntu-20:
+    uses: ./.github/workflows/_build-linux.yml
+    secrets: inherit
+    with:
+      name: ubuntu-20
+      tags: ubuntu latest
+  ubuntu-18:
+    uses: ./.github/workflows/_build-linux.yml
+    secrets: inherit
+    with:
+      name: ubuntu-18
+  ubuntu-16:
+    uses: ./.github/workflows/_build-linux.yml
+    secrets: inherit
+    with:
+      name: ubuntu-16
 
-  build-ubuntu-18:
-    runs-on: ubuntu-18.04
-    env:
-      IMAGE_TAG: "ubuntu-18"
-    steps:
-      - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1.0.3
-        with:
-          version: 'v0.3.14'
-      - name: Docker Login
-        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
-        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
-      - name: Test Image
-        run: dgoss run steamcmd/steamcmd:$IMAGE_TAG --entrypoint=""
-      # master
-      - name: Push Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker push steamcmd/steamcmd:$IMAGE_TAG
+  ## linux / alpine
+  alpine-3:
+    uses: ./.github/workflows/_build-linux.yml
+    needs: ubuntu-20
+    secrets: inherit
+    with:
+      name: alpine-3
+      tags: alpine
 
-  build-ubuntu-16:
-    runs-on: ubuntu-18.04
-    env:
-      IMAGE_TAG: "ubuntu-16"
-    steps:
-      - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1.0.3
-        with:
-          version: 'v0.3.14'
-      - name: Docker Login
-        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
-        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
-      - name: Test Image
-        run: dgoss run steamcmd/steamcmd:$IMAGE_TAG --entrypoint=""
-      # master
-      - name: Push Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker push steamcmd/steamcmd:$IMAGE_TAG
+  ## linux / rocky
+  rocky-9:
+    uses: ./.github/workflows/_build-linux.yml
+    needs: ubuntu-20
+    secrets: inherit
+    with:
+      name: rocky-9
+      tags: rocky
+  rocky-8:
+    uses: ./.github/workflows/_build-linux.yml
+    needs: ubuntu-20
+    secrets: inherit
+    with:
+      name: rocky-8
 
-  build-alpine-3:
-    runs-on: ubuntu-18.04
-    needs: build-ubuntu-18
-    env:
-      IMAGE_TAG: "alpine-3"
-      IMAGE_TAG_ALT: "alpine"
-    steps:
-      - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1.0.3
-        with:
-          version: 'v0.3.14'
-      - name: Docker Login
-        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
-        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
-      - name: Test Image
-        run: dgoss run steamcmd/steamcmd:$IMAGE_TAG --entrypoint=""
-      # master
-      - name: Tag Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:$IMAGE_TAG_ALT
-      - name: Push Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: for TAG in $IMAGE_TAG $IMAGE_TAG_ALT; do docker push steamcmd/steamcmd:${TAG}; done
+  ## linux / centos
+  centos-9:
+    uses: ./.github/workflows/_build-linux.yml
+    needs: ubuntu-20
+    secrets: inherit
+    with:
+      name: centos-9
+      tags: centos
+  centos-8:
+    uses: ./.github/workflows/_build-linux.yml
+    needs: ubuntu-20
+    secrets: inherit
+    with:
+      name: centos-8
 
-  build-rocky-9:
-    runs-on: ubuntu-18.04
-    needs: build-ubuntu-18
-    env:
-      IMAGE_TAG: "rocky-9"
-      IMAGE_TAG_ALT: "rocky"
-    steps:
-      - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1.0.3
-        with:
-          version: 'v0.3.14'
-      - name: Docker Login
-        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
-        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
-      - name: Test Image
-        run: dgoss run steamcmd/steamcmd:$IMAGE_TAG --entrypoint=""
-      # master
-      - name: Tag Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:$IMAGE_TAG_ALT
-      - name: Push Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: for TAG in $IMAGE_TAG $IMAGE_TAG_ALT; do docker push steamcmd/steamcmd:${TAG}; done
+  ## windows / default
+  windows-1809:
+    uses: ./.github/workflows/_build-windows.yml
+    secrets: inherit
+    with:
+      name: windows-1809
+      tags: windows
 
-  build-rocky-8:
-    runs-on: ubuntu-18.04
-    needs: build-ubuntu-18
-    env:
-      IMAGE_TAG: "rocky-8"
-    steps:
-      - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1.0.3
-        with:
-          version: 'v0.3.14'
-      - name: Docker Login
-        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
-        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
-      - name: Test Image
-        run: dgoss run steamcmd/steamcmd:$IMAGE_TAG --entrypoint=""
-      # master
-      - name: Push Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker push steamcmd/steamcmd:$IMAGE_TAG
-
-  build-centos-9:
-    runs-on: ubuntu-18.04
-    needs: build-ubuntu-18
-    env:
-      IMAGE_TAG: "centos-9"
-      IMAGE_TAG_ALT: "centos"
-    steps:
-      - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1.0.3
-        with:
-          version: 'v0.3.14'
-      - name: Docker Login
-        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
-        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
-      - name: Test Image
-        run: dgoss run steamcmd/steamcmd:$IMAGE_TAG --entrypoint=""
-      # master
-      - name: Tag Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:$IMAGE_TAG_ALT
-      - name: Push Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: for TAG in $IMAGE_TAG $IMAGE_TAG_ALT; do docker push steamcmd/steamcmd:${TAG}; done
-
-  build-centos-8:
-    runs-on: ubuntu-18.04
-    needs: build-ubuntu-18
-    env:
-      IMAGE_TAG: "centos-8"
-    steps:
-      - uses: actions/checkout@v2
-      - uses: e1himself/goss-installation-action@v1.0.3
-        with:
-          version: 'v0.3.14'
-      - name: Docker Login
-        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -t steamcmd/steamcmd:$IMAGE_TAG .
-        working-directory: dockerfiles/${{ env.IMAGE_TAG }}
-      - name: Test Image
-        run: dgoss run steamcmd/steamcmd:$IMAGE_TAG --entrypoint=""
-      # master
-      - name: Push Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker push steamcmd/steamcmd:$IMAGE_TAG
-
-  build-windows-1809:
-    runs-on: windows-2019
-    steps:
-      - uses: actions/checkout@v2
-      - name: Docker Login
-        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -t steamcmd/steamcmd:windows-1809 .
-        working-directory: dockerfiles/windows-1809
-      - name: Test Image
-        run: docker run steamcmd/steamcmd:windows-1809 +quit
-      # master
-      - name: Tag Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker tag steamcmd/steamcmd:windows-1809 steamcmd/steamcmd:windows
-      - name: Push Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker push steamcmd/steamcmd:windows-1809
-      - name: Push Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker push steamcmd/steamcmd:windows
-
-  build-windows-core-2019:
-    runs-on: windows-2019
-    steps:
-      - uses: actions/checkout@v2
-      - name: Docker Login
-        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -t steamcmd/steamcmd:windows-core-2019 .
-        working-directory: dockerfiles/windows-core-2019
-      - name: Test Image
-        run: docker run steamcmd/steamcmd:windows-core-2019 +quit
-      # master
-      - name: Tag Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker tag steamcmd/steamcmd:windows-core-2019 steamcmd/steamcmd:windows-core
-      - name: Push Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker push steamcmd/steamcmd:windows-core-2019
-      - name: Push Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker push steamcmd/steamcmd:windows-core
-
-  build-windows-core-1809:
-    runs-on: windows-2019
-    steps:
-      - uses: actions/checkout@v2
-      - name: Docker Login
-        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -t steamcmd/steamcmd:windows-core-1809 .
-        working-directory: dockerfiles/windows-core-1809
-      - name: Test Image
-        run: docker run steamcmd/steamcmd:windows-core-1809 +quit
-      # master
-      - name: Push Image
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: docker push steamcmd/steamcmd:windows-core-1809
+  ## windows / core
+  windows-core-2019:
+    uses: ./.github/workflows/_build-windows.yml
+    secrets: inherit
+    with:
+      name: windows-core-2019
+      tags: windows-core
+  windows-core-1809:
+    uses: ./.github/workflows/_build-windows.yml
+    secrets: inherit
+    with:
+      name: windows-core-1809

@@ -1,7 +1,7 @@
 ######## BUILDER ########
 
 # Set the base image
-FROM steamcmd/steamcmd:ubuntu-18 as builder
+FROM steamcmd/steamcmd:ubuntu-20 as builder
 
 # Set environment variables
 ENV USER root
