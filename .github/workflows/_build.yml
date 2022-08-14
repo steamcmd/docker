@@ -7,7 +7,10 @@ on:
         required: true
         description: "Name of main tag and workflow file."
       type:
-        type: string
+        type: choice
+        options:
+          - linux
+          - windows
         required: true
         description: "Operating system to use. Choices are: linux/windows."
       tags:
@@ -17,6 +20,7 @@ on:
 
 jobs:
   build:
+    if: inputs.type == 'linux'
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -28,21 +32,42 @@ jobs:
       - name: Build Image
         run: docker build -t steamcmd/steamcmd:${{ inputs.name }} .
         working-directory: dockerfiles/${{ inputs.name }}
-      #- name: Test Image
-      #  run: dgoss run steamcmd/steamcmd:${{ inputs.name }} --entrypoint=""
-
-      - name: Test Loop #1
-        run: for TAG in $(echo ${{ inputs.tags }}) ${{ inputs.name }}; do docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:${TAG}; done
-        if: ${{ inputs.tags != '' }}
-
-      - name: Test Loop #2
-        run: docker images
-        if: ${{ inputs.tags != '' }}
+      - name: Test Image
+        run: dgoss run steamcmd/steamcmd:${{ inputs.name }} --entrypoint=""
 
       # master
       - name: Tag Image
-        run: for TAG in $IMAGE_TAG_ALT latest; do docker tag steamcmd/steamcmd:$IMAGE_TAG steamcmd/steamcmd:${TAG}; done
+        run: >
+          for TAG in ${{ inputs.tags }};
+          do
+            docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:${TAG};
+          done
         if: ${{ (github.ref == 'refs/heads/master') && (inputs.tags != '') }}
       - name: Push Image
-        run: for TAG in $IMAGE_TAG $IMAGE_TAG_ALT latest; do docker push steamcmd/steamcmd:${TAG}; done
+        run: docker push steamcmd/steamcmd --all-tags
+        if: ${{ github.ref == 'refs/heads/master' }}
+
+  build:
+    if: inputs.type == 'windows'
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Image
+        run: docker build -t steamcmd/steamcmd:${{ inputs.name }} .
+        working-directory: dockerfiles/${{ inputs.name }}
+      - name: Test Image
+        run: docker run steamcmd/steamcmd:${{ inputs.name }} +quit
+
+      # master
+      - name: Tag Image
+        run: >
+          for TAG in ${{ inputs.tags }};
+          do
+            docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:${TAG};
+          done
+        if: ${{ (github.ref == 'refs/heads/master') && (inputs.tags != '') }}
+      - name: Push Image
+        run: docker push steamcmd/steamcmd --all-tags
         if: ${{ github.ref == 'refs/heads/master' }}
