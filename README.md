@@ -15,8 +15,8 @@ and game server software. The images are build automatically every 6 hours with
 of base image.
 
 For detailed information about SteamCMD,
-see [wiki](https://developer.valvesoftware.com/wiki/SteamCMD).
-Are you looking for a programmatic way to retrieve information via SteamCMD,
+see the official [wiki](https://developer.valvesoftware.com/wiki/SteamCMD).
+If you are looking for a programmatic way to retrieve information via SteamCMD,
 have a look at [steamcmd.net](https://www.steamcmd.net).
 
 ## Tags
