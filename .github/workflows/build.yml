@@ -11,12 +11,17 @@ on:
 
 jobs:
   ## linux / ubuntu
+  ubuntu-22:
+    uses: ./.github/workflows/_build-linux.yml
+    secrets: inherit
+    with:
+      name: ubuntu-22
+      tags: ubuntu latest
   ubuntu-20:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: ubuntu-20
-      tags: ubuntu latest
   ubuntu-18:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
