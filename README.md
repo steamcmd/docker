@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/github/workflow/status/steamcmd/docker/Build%20Images.svg?logo=github)](https://github.com/steamcmd/docker/actions)
+[![Build Status](https://github.com/steamcmd/docker/actions/workflows/build.yml/badge.svg)](https://github.com/steamcmd/docker/actions)
 [![CodeFactor](https://www.codefactor.io/repository/github/steamcmd/docker/badge)](https://www.codefactor.io/repository/github/steamcmd/docker)
 [![Discord Online](https://img.shields.io/discord/928592378711912488.svg)](https://discord.steamcmd.net)
 [![Service Status](https://img.shields.io/static/v1?label=service&message=status&color=blue)](https://status.steamcmd.net)
