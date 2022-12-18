@@ -1,2 +1,3 @@
 ignored:
   - DL3033 # Pin versions in yum
+  - DL3059 # Multiple consecutive RUN instructions

@@ -11,12 +11,17 @@ on:
 
 jobs:
   ## linux / ubuntu
+  ubuntu-22:
+    uses: ./.github/workflows/_build-linux.yml
+    secrets: inherit
+    with:
+      name: ubuntu-22
+      tags: ubuntu latest
   ubuntu-20:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: ubuntu-20
-      tags: ubuntu latest
   ubuntu-18:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
@@ -31,7 +36,7 @@ jobs:
   ## linux / alpine
   alpine-3:
     uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-20
+    needs: ubuntu-22
     secrets: inherit
     with:
       name: alpine-3
@@ -40,14 +45,14 @@ jobs:
   ## linux / rocky
   rocky-9:
     uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-20
+    needs: ubuntu-22
     secrets: inherit
     with:
       name: rocky-9
       tags: rocky
   rocky-8:
     uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-20
+    needs: ubuntu-22
     secrets: inherit
     with:
       name: rocky-8
@@ -55,14 +60,14 @@ jobs:
   ## linux / centos
   centos-9:
     uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-20
+    needs: ubuntu-22
     secrets: inherit
     with:
       name: centos-9
       tags: centos
   centos-8:
     uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-20
+    needs: ubuntu-22
     secrets: inherit
     with:
       name: centos-8
