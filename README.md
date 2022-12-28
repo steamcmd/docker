@@ -4,7 +4,7 @@
 [![Service Status](https://img.shields.io/static/v1?label=service&message=status&color=blue)](https://status.steamcmd.net)
 [![Docker Pulls](https://img.shields.io/docker/pulls/steamcmd/steamcmd.svg)](https://hub.docker.com/r/steamcmd/steamcmd)
 [![Image Size](https://img.shields.io/docker/image-size/steamcmd/steamcmd/latest.svg)](https://hub.docker.com/r/steamcmd/steamcmd)
-[![GitHub Sponsors](https://img.shields.io/github/sponsors/jonakoudijs)](https://github.com/sponsors/jonakoudijs)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/steamcmd)](https://github.com/sponsors/steamcmd)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 # SteamCMD Docker Image
