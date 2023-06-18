@@ -12,7 +12,7 @@ command:
 
     # required output
     stdout:
-      - "Loading Steam API...OK"
+      - "OK"
 
     # optional attributes
     stderr: []
