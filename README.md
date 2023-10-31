@@ -25,6 +25,9 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 *   [`ubuntu-20`](dockerfiles/ubuntu-20/Dockerfile)
 *   [`ubuntu-18`](dockerfiles/ubuntu-18/Dockerfile)
 *   [`ubuntu-16`](dockerfiles/ubuntu-16/Dockerfile)
+*   [`debian-12`, `debian-bookworm`, `debian`](dockerfiles/debian-12/Dockerfile)
+*   [`debian-11`, `debian-bullseye`](dockerfiles/debian-11/Dockerfile)
+*   [`debian-10`, `debian-buster`](dockerfiles/debian-10/Dockerfile)
 *   [`alpine-3`, `alpine`](dockerfiles/alpine-3/Dockerfile)
 *   [`rocky-9`, `rocky`](dockerfiles/rocky-9/Dockerfile)
 *   [`rocky-8`](dockerfiles/rocky-8/Dockerfile)
@@ -45,6 +48,9 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 > *Github Actions supports newer Windows versions. See*
 > *[this article](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility)*
 > *on the Microsoft docs for more information on the subject.*
+
+> ***NOTE***
+> *The Debian images are based on the `slim` images.
 
 > ***Note:***
 > *The CentOS images are based on CentOS Stream images seeing the old images are*
