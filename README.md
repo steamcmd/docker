@@ -21,10 +21,10 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 
 ## Tags
 
-*   [`ubuntu-22`, `ubuntu`, `latest`](dockerfiles/ubuntu-22/Dockerfile)
-*   [`ubuntu-20`](dockerfiles/ubuntu-20/Dockerfile)
-*   [`ubuntu-18`](dockerfiles/ubuntu-18/Dockerfile)
-*   [`ubuntu-16`](dockerfiles/ubuntu-16/Dockerfile)
+*   [`ubuntu-22`, `ubuntu-jammy`, `ubuntu`, `latest`](dockerfiles/ubuntu-22/Dockerfile)
+*   [`ubuntu-20`, `ubuntu-focal`](dockerfiles/ubuntu-20/Dockerfile)
+*   [`ubuntu-18`, `ubuntu-bionic`](dockerfiles/ubuntu-18/Dockerfile)
+*   [`ubuntu-16`, `ubuntu-xenial`](dockerfiles/ubuntu-16/Dockerfile)
 *   [`debian-12`, `debian-bookworm`, `debian`](dockerfiles/debian-12/Dockerfile)
 *   [`debian-11`, `debian-bullseye`](dockerfiles/debian-11/Dockerfile)
 *   [`debian-10`, `debian-buster`](dockerfiles/debian-10/Dockerfile)
