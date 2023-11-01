@@ -29,7 +29,7 @@ ENV USER root
 ENV HOME /root
 
 # Install prerequisites
-RUN yum -y install glibc.i686 libgcc.i686 \
+RUN yum -y install glibc.i686 libgcc.i686 glibc-langpack-en \
  && yum -y clean all
 
 # Copy steamcmd files from builder
@@ -43,6 +43,13 @@ COPY --from=builder /root/installer/linux32/libstdc++.so.6 /lib/
 
 # Update SteamCMD and verify latest version
 RUN steamcmd +quit
+
+# Fix missing directories and libraries
+RUN mkdir -p $HOME/.steam \
+ && ln -s $HOME/.local/share/Steam/steamcmd/linux32 $HOME/.steam/sdk32 \
+ && ln -s $HOME/.local/share/Steam/steamcmd/linux64 $HOME/.steam/sdk64 \
+ && ln -s $HOME/.steam/sdk32/steamclient.so $HOME/.steam/sdk32/steamservice.so \
+ && ln -s $HOME/.steam/sdk64/steamclient.so $HOME/.steam/sdk64/steamservice.so
 
 # Set default command
 ENTRYPOINT ["steamcmd"]

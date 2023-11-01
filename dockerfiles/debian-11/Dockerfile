@@ -24,7 +24,8 @@ RUN dpkg --add-architecture i386 \
  && rm -rf /var/lib/apt/lists/*
 
 # Add unicode support
-RUN locale-gen en_US.UTF-8
+RUN sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
+ && locale-gen en_US.UTF-8
 ENV LANG 'en_US.UTF-8'
 ENV LANGUAGE 'en_US:en'
 
@@ -33,6 +34,13 @@ RUN ln -s /usr/games/steamcmd /usr/bin/steamcmd
 
 # Update SteamCMD and verify latest version
 RUN steamcmd +quit
+
+# Fix missing directories and libraries
+RUN mkdir -p $HOME/.steam \
+ && ln -s $HOME/.local/share/Steam/steamcmd/linux32 $HOME/.steam/sdk32 \
+ && ln -s $HOME/.local/share/Steam/steamcmd/linux64 $HOME/.steam/sdk64 \
+ && ln -s $HOME/.steam/sdk32/steamclient.so $HOME/.steam/sdk32/steamservice.so \
+ && ln -s $HOME/.steam/sdk64/steamclient.so $HOME/.steam/sdk64/steamservice.so
 
 # Set default command
 ENTRYPOINT ["steamcmd"]

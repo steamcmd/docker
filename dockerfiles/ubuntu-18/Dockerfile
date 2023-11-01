@@ -33,6 +33,12 @@ RUN ln -s /usr/games/steamcmd /usr/bin/steamcmd
 # Update SteamCMD and verify latest version
 RUN steamcmd +quit
 
+# Fix missing directories and libraries
+RUN ln -s $HOME/.steam/steamcmd/linux32 $HOME/.steam/sdk32 \
+ && ln -s $HOME/.steam/steamcmd/linux64 $HOME/.steam/sdk64 \
+ && ln -s $HOME/.steam/sdk32/steamclient.so $HOME/.steam/sdk32/steamservice.so \
+ && ln -s $HOME/.steam/sdk64/steamclient.so $HOME/.steam/sdk64/steamservice.so
+
 # Set default command
 ENTRYPOINT ["steamcmd"]
 CMD ["+help", "+quit"]
