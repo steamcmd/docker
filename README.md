@@ -21,7 +21,8 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 
 ## Tags
 
-*   [`ubuntu-22`, `ubuntu-jammy`, `ubuntu`, `latest`](dockerfiles/ubuntu-22/Dockerfile)
+*   [`ubuntu-24`, `ubuntu-noble`, `ubuntu`, `latest`](dockerfiles/ubuntu-24/Dockerfile)
+*   [`ubuntu-22`, `ubuntu-jammy`](dockerfiles/ubuntu-22/Dockerfile)
 *   [`ubuntu-20`, `ubuntu-focal`](dockerfiles/ubuntu-20/Dockerfile)
 *   [`ubuntu-18`, `ubuntu-bionic`](dockerfiles/ubuntu-18/Dockerfile)
 *   [`ubuntu-16`, `ubuntu-xenial`](dockerfiles/ubuntu-16/Dockerfile)
