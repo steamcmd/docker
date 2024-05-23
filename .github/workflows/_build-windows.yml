@@ -32,7 +32,7 @@ jobs:
           {
             docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:$tag
           }
-        if: ${{ (github.ref == 'refs/heads/master') && (inputs.tags != '') }}
+        if: ${{ (github.repository == 'steamcmd/docker') && (github.ref == 'refs/heads/master') && (inputs.tags != '') }}
       - name: Push Image
         run: docker push steamcmd/steamcmd --all-tags
-        if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ (github.repository == 'steamcmd/docker') && (github.ref == 'refs/heads/master') }}

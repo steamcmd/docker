@@ -17,30 +17,35 @@ jobs:
     with:
       name: ubuntu-24
       tags: ubuntu-noble ubuntu latest
+      platforms: linux/amd64
   ubuntu-22:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: ubuntu-22
       tags: ubuntu-jammy
+      platforms: linux/amd64
   ubuntu-20:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: ubuntu-20
       tags: ubuntu-focal
+      platforms: linux/amd64
   ubuntu-18:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: ubuntu-18
       tags: ubuntu-bionic
+      platforms: linux/amd64
   ubuntu-16:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: ubuntu-16
       tags: ubuntu-xenial
+      platforms: linux/amd64
 
   ## linux / debian
   debian-12:
@@ -49,18 +54,21 @@ jobs:
     with:
       name: debian-12
       tags: debian-bookworm debian
+      platforms: linux/amd64,linux/arm/v7,linux/arm64
   debian-11:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: debian-11
       tags: debian-bullseye
+      platforms: linux/amd64,linux/arm/v7,linux/arm64
   debian-10:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: debian-10
       tags: debian-buster
+      platforms: linux/amd64,linux/arm/v7,linux/arm64
 
   ## linux / alpine
   alpine-3:
@@ -70,6 +78,7 @@ jobs:
     with:
       name: alpine-3
       tags: alpine
+      platforms: linux/amd64
 
   ## linux / rocky
   rocky-9:
@@ -79,12 +88,14 @@ jobs:
     with:
       name: rocky-9
       tags: rocky
+      platforms: linux/amd64
   rocky-8:
     uses: ./.github/workflows/_build-linux.yml
     needs: ubuntu-22
     secrets: inherit
     with:
       name: rocky-8
+      platforms: linux/amd64
 
   ## linux / centos
   centos-9:
@@ -94,12 +105,14 @@ jobs:
     with:
       name: centos-9
       tags: centos
+      platforms: linux/amd64
   centos-8:
     uses: ./.github/workflows/_build-linux.yml
     needs: ubuntu-22
     secrets: inherit
     with:
       name: centos-8
+      platforms: linux/amd64
 
   ## windows / default
   windows-1809:
