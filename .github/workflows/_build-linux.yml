@@ -29,7 +29,7 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Build Image
-        run: docker buildx build --platform ${{ inputs.platforms }} -t steamcmd/steamcmd:${{ inputs.name }} .
+        run: docker buildx build --load --platform ${{ inputs.platforms }} -t steamcmd/steamcmd:${{ inputs.name }} .
         working-directory: dockerfiles/${{ inputs.name }}
       - name: Test Image
         run: >
