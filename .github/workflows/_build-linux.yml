@@ -32,7 +32,11 @@ jobs:
         run: docker buildx build --platform ${{ inputs.platforms }} -t steamcmd/steamcmd:${{ inputs.name }} .
         working-directory: dockerfiles/${{ inputs.name }}
       - name: Test Image
-        run: dgoss run steamcmd/steamcmd:${{ inputs.name }} --entrypoint=""
+        run: >
+          IFS=',' ; for platform in $(echo ${{ inputs.platforms }});
+          do
+            DOCKER_DEFAULT_PLATFORM=$platform dgoss run steamcmd/steamcmd:${{ inputs.name }} --entrypoint=""
+          done
 
       # master
       - name: Tag Image
