@@ -54,21 +54,21 @@ jobs:
     with:
       name: debian-12
       tags: debian-bookworm debian
-      platforms: linux/amd64,linux/arm/v7,linux/arm64
+      platforms: linux/amd64 linux/arm/v7 linux/arm64
   debian-11:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: debian-11
       tags: debian-bullseye
-      platforms: linux/amd64,linux/arm/v7,linux/arm64
+      platforms: linux/amd64 linux/arm/v7 linux/arm64
   debian-10:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: debian-10
       tags: debian-buster
-      platforms: linux/amd64,linux/arm/v7,linux/arm64
+      platforms: linux/amd64 linux/arm/v7 linux/arm64
 
   ## linux / alpine
   alpine-3:
