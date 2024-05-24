@@ -28,22 +28,19 @@ jobs:
           version: latest
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-      - name: Build and Test Image
+
+      - name: Build, Test and Push Image
         run: >
           for platform in ${{ inputs.platforms }};
           do
             docker buildx build --load --platform ${platform} -t steamcmd/steamcmd:${{ inputs.name }} ./dockerfiles/${{ inputs.name }}
             DOCKER_DEFAULT_PLATFORM=${platform} dgoss run steamcmd/steamcmd:${{ inputs.name }} --entrypoint=""
+            tags=(${{ inputs.tags }})
+            for tag in ${tags[@]};
+            do
+              docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:${tag}
+            done
+            if [ "${{ github.repository }}" = "steamcmd/docker" ] && [ "${{ github.ref }}" = "refs/heads/master" ]; then
+              docker push steamcmd/steamcmd --all-tags
+            fi
           done
-
-      # master
-      - name: Tag Image
-        run: >
-          for TAG in ${{ inputs.tags }};
-          do
-            docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:${TAG};
-          done
-        if: ${{ (github.repository == 'steamcmd/docker') && (github.ref == 'refs/heads/master') && (inputs.tags != '') }}
-      - name: Push Image
-        run: docker push steamcmd/steamcmd --all-tags
-        if: ${{ (github.repository == 'steamcmd/docker') && (github.ref == 'refs/heads/master') }}
