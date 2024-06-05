@@ -94,12 +94,6 @@ jobs:
     with:
       name: centos-9
       tags: centos
-  centos-8:
-    uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-22
-    secrets: inherit
-    with:
-      name: centos-8
 
   ## windows / default
   windows-1809:
