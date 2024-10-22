@@ -51,7 +51,7 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 > *on the Microsoft docs for more information on the subject.*
 
 > ***NOTE***
-> *The Debian images are based on the `slim` images.
+> *The Debian images are based on the `slim` images.*
 
 > ***Note:***
 > *The CentOS images are based on CentOS Stream images seeing the old images are*
