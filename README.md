@@ -41,6 +41,11 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 *   [`windows-core-1903`](dockerfiles/windows-core-1903/Dockerfile) *(unavailable)*
 *   [`windows-core-1809`](dockerfiles/windows-core-1809/Dockerfile)
 
+All the tags are pushed to both the Docker Hub and the GitHub Container Registry:
+
+- `docker.io/steamcmd/steamcmd:<tag>`
+- `ghcr.io/steamcmd/steamcmd:<tag>`
+
 > ***Note:***
 > *Some Windows tags are not available (yet) because they cannot be*
 > *build on the current Github Actions Windows Platform. The Dockerfiles are*
