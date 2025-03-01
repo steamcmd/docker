@@ -41,5 +41,5 @@ jobs:
       - name: Push Image
         run: |
           docker push steamcmd/steamcmd --all-tags
-          docker push ghcr.iosteamcmd/steamcmd --all-tags
+          docker push ghcr.io/steamcmd/steamcmd --all-tags
         if: ${{ github.ref == 'refs/heads/master' }}
