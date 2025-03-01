@@ -5,7 +5,7 @@ on:
 
 jobs:
   create-keepalive-commit:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v2
       - name: Create Keepalive Commit
