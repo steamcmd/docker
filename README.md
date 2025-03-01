@@ -54,7 +54,7 @@ All the tags are pushed to both the Docker Hub and the GitHub Container Registry
 > *[this article](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility)*
 > *on the Microsoft docs for more information on the subject.*
 
-> ***NOTE***
+> ***Note:***
 > *The Debian images are based on the `slim` images.*
 
 > ***Note:***
