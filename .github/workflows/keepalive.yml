@@ -4,9 +4,10 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
-  create-keepalive-commit:
-    runs-on: ubuntu-24.04
+  workflow-keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
     steps:
-      - uses: actions/checkout@v2
-      - name: Create Keepalive Commit
-        uses: gautamkrishnar/keepalive-workflow@master
+      - uses: liskin/gh-workflow-keepalive@v1
