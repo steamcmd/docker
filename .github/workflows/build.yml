@@ -3,9 +3,11 @@ on:
   push:
     branches:
       - master
+      - develop
   pull_request:
     branches:
       - master
+      - develop
   schedule:
     - cron: '0 5 * * *'
 
@@ -115,3 +117,13 @@ jobs:
     secrets: inherit
     with:
       name: windows-core-1809
+  windows-core-2022:
+    uses: ./.github/workflows/_build-windows.yml
+    secrets: inherit
+    with:
+      name: windows-core-2022
+  windows-core-2025:
+    uses: ./.github/workflows/_build-windows.yml
+    secrets: inherit
+    with:
+      name: windows-core-2025
