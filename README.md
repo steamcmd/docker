@@ -33,13 +33,11 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 *   [`rocky-9`, `rocky`](dockerfiles/rocky-9/Dockerfile)
 *   [`rocky-8`](dockerfiles/rocky-8/Dockerfile)
 *   [`centos-9`, `centos`](dockerfiles/centos-9/Dockerfile)
-*   [`windows-1909`](dockerfiles/windows-1909/Dockerfile) *(unavailable)*
-*   [`windows-1903`](dockerfiles/windows-1903/Dockerfile) *(unavailable)*
-*   [`windows-1809`, `windows`](dockerfiles/windows-1809/Dockerfile)
-*   [`windows-core-2019`, `windows-core`](dockerfiles/windows-core-2019/Dockerfile)
-*   [`windows-core-1909`](dockerfiles/windows-core-1909/Dockerfile) *(unavailable)*
-*   [`windows-core-1903`](dockerfiles/windows-core-1903/Dockerfile) *(unavailable)*
-*   [`windows-core-1809`](dockerfiles/windows-core-1809/Dockerfile)
+*   [`windows-1809`](dockerfiles/windows-1809/Dockerfile) *(unavailable)*
+*   [`windows-core-2025`](dockerfiles/windows-core-2025/Dockerfile) *(unavailable)*
+*   [`windows-core-2022`](dockerfiles/windows-core-2022/Dockerfile) *(unavailable)*
+*   [`windows-core-2019`](dockerfiles/windows-core-2019/Dockerfile) *(unavailable)*
+*   [`windows-core-1809`](dockerfiles/windows-core-1809/Dockerfile) *(unavailable)*
 
 All the tags are pushed to both the Docker Hub and the GitHub Container Registry:
 
@@ -47,10 +45,10 @@ All the tags are pushed to both the Docker Hub and the GitHub Container Registry
 - `ghcr.io/steamcmd/steamcmd:<tag>`
 
 > ***Note:***
-> *Some Windows tags are not available (yet) because they cannot be*
-> *build on the current Github Actions Windows Platform. The Dockerfiles are*
-> *added to this repository to be able to build manually and for the moment when*
-> *Github Actions supports newer Windows versions. See*
+> *The Windows tags are not available because they either cannot be build on*
+> *the current Github Actions Windows Platform or are simply broken. The Dockerfiles*
+> *are added to this repository to be able to build manually and for the moment when*
+> *the builds can be ran succesfully. See*
 > *[this article](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility)*
 > *on the Microsoft docs for more information on the subject.*
 
