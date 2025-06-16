@@ -1,7 +1,7 @@
 ######## INSTALL ########
 
 # Set the base image
-FROM mcr.microsoft.com/windows:1903
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
 # Set alternative shell
 SHELL ["powershell"]

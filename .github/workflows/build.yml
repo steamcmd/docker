@@ -3,9 +3,11 @@ on:
   push:
     branches:
       - master
+      - develop
   pull_request:
     branches:
       - master
+      - develop
   schedule:
     - cron: '0 5 * * *'
 
@@ -94,24 +96,3 @@ jobs:
     with:
       name: centos-9
       tags: centos
-
-  ## windows / default
-  windows-1809:
-    uses: ./.github/workflows/_build-windows.yml
-    secrets: inherit
-    with:
-      name: windows-1809
-      tags: windows
-
-  ## windows / core
-  windows-core-2019:
-    uses: ./.github/workflows/_build-windows.yml
-    secrets: inherit
-    with:
-      name: windows-core-2019
-      tags: windows-core
-  windows-core-1809:
-    uses: ./.github/workflows/_build-windows.yml
-    secrets: inherit
-    with:
-      name: windows-core-1809
