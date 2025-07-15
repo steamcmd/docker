@@ -7,8 +7,8 @@ FROM mcr.microsoft.com/windows/servercore:1809
 SHELL ["powershell"]
 
 # Set environment variables
-ENV POWERSHELL_TELEMETRY_OPTOUT 1
-ENV HOME "c:\steamcmd"
+ENV POWERSHELL_TELEMETRY_OPTOUT=1
+ENV HOME="c:\steamcmd"
 
 # Create system user
 RUN New-LocalUser -Name "steamcmd" -NoPassword -AccountNeverExpires -UserMayNotChangePassword | Set-LocalUser -PasswordNeverExpires $true

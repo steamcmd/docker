@@ -4,8 +4,8 @@
 FROM steamcmd/steamcmd:ubuntu-22 as builder
 
 # Set environment variables
-ENV USER root
-ENV HOME /root/installer
+ENV USER=root
+ENV HOME=/root/installer
 
 # Set working directory
 WORKDIR $HOME
@@ -25,8 +25,8 @@ RUN tar -xvzf steamcmd.tar.gz && rm steamcmd.tar.gz
 FROM alpine:3
 
 # Set environment variables
-ENV USER root
-ENV HOME /root
+ENV USER=root
+ENV HOME=/root
 
 # Set working directory
 WORKDIR $HOME

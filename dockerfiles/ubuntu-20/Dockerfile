@@ -4,8 +4,8 @@
 FROM ubuntu:20.04
 
 # Set environment variables
-ENV USER root
-ENV HOME /root
+ENV USER=root
+ENV HOME=/root
 
 # Set working directory
 WORKDIR $HOME
@@ -24,8 +24,8 @@ RUN dpkg --add-architecture i386 \
 
 # Add unicode support
 RUN locale-gen en_US.UTF-8
-ENV LANG 'en_US.UTF-8'
-ENV LANGUAGE 'en_US:en'
+ENV LANG='en_US.UTF-8'
+ENV LANGUAGE='en_US:en'
 
 # Create symlink for executable
 RUN ln -s /usr/games/steamcmd /usr/bin/steamcmd
