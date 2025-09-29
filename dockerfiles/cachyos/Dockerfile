@@ -21,9 +21,16 @@ RUN sed -i 's/^#\[multilib\]/[multilib]/' /etc/pacman.conf && sed -i 's|^#Includ
 
 RUN pacman --noconfirm --needed -Syu \
     && pacman --noconfirm --needed -S bash dbus gcc-libs sdl2 lib32-glibc lib32-dbus lib32-gcc-libs lib32-sdl2 \
-    && pacman --noconfirm -Scc \
-    && rm -rf /tmp/* && rm -rf /var/tmp/*
+    && pacman --noconfirm -Scc
 
+RUN sed -i 's/^#\s*\(en_US\.UTF-8[[:space:]]\+UTF-8\)/\1/' /etc/locale.gen \
+    && locale-gen \
+    && echo -e 'LANG=en_US.UTF-8\nLC_COLLATE=C' | tee /etc/locale.conf > /dev/null
+
+ENV LANG='en_US.UTF-8'
+ENV LANGUAGE='en_US:en'
+
+COPY --from=builder /etc/ssl/certs /etc/ssl/certs
 COPY --from=builder /root/installer/steamcmd.sh /usr/lib/games/steam/
 COPY --from=builder /root/installer/linux32/steamcmd /usr/lib/games/steam/
 COPY --from=builder /usr/games/steamcmd /usr/bin/steamcmd
@@ -35,7 +42,8 @@ RUN mkdir -p $HOME/.steam \
     && ln -s $HOME/.local/share/Steam/steamcmd/linux64 $HOME/.steam/sdk64 \
     && ln -s $HOME/.steam/sdk32/steamclient.so $HOME/.steam/sdk32/steamservice.so \
     && ln -s $HOME/.steam/sdk64/steamclient.so $HOME/.steam/sdk64/steamservice.so \
-    && chown -R $USER:$USER $HOME
+    && chown -R $USER:$USER $HOME \
+    && rm -rf /tmp/* && rm -rf /var/tmp/*
 
 ENTRYPOINT ["steamcmd"]
 CMD ["+help", "+quit"]
