@@ -111,4 +111,3 @@ jobs:
     secrets: inherit
     with:
       name: cachyos-3
-      tags: cachyos

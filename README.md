@@ -33,7 +33,8 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 *   [`rocky-9`, `rocky`](dockerfiles/rocky-9/Dockerfile)
 *   [`rocky-8`](dockerfiles/rocky-8/Dockerfile)
 *   [`centos-9`, `centos`](dockerfiles/centos-9/Dockerfile)
-*   [`cachyos-3`, `cachyos`](dockerfiles/cachyos-3/Dockerfile)
+*   [`cachyos-3`](dockerfiles/cachyos-3/Dockerfile)
+*   [`cachyos`](dockerfiles/cachyos/Dockerfile)
 *   [`windows-1809`](dockerfiles/windows-1809/Dockerfile) *(unavailable)*
 *   [`windows-core-2025`](dockerfiles/windows-core-2025/Dockerfile) *(unavailable)*
 *   [`windows-core-2022`](dockerfiles/windows-core-2022/Dockerfile) *(unavailable)*
