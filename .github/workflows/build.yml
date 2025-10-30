@@ -1,6 +1,6 @@
 name: Build Images
 on:
-  manual_dispatch:
+  workflow_dispatch:
   push:
     branches:
       - master
