@@ -17,10 +17,16 @@ RUN echo steam steam/question select "I AGREE" | debconf-set-selections \
 
 # Update the repository and install SteamCMD
 ARG DEBIAN_FRONTEND=noninteractive
-RUN dpkg --add-architecture i386 \
- && apt-get update -y \
- && apt-get install -y --no-install-recommends ca-certificates locales steamcmd \
- && rm -rf /var/lib/apt/lists/*
+RUN until \
+  dpkg --add-architecture i386 \
+  && apt-get update -y \
+  && apt-get install -y --no-install-recommends ca-certificates locales steamcmd \
+  && rm -rf /var/lib/apt/lists/*; \
+do \
+  echo "APT install failed, retrying in 3 seconds..."; \
+  sleep 3; \
+done
+
 
 # Add unicode support
 RUN locale-gen en_US.UTF-8
