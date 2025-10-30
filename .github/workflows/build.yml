@@ -46,6 +46,7 @@ jobs:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
+      runner: ubuntu-24.04
       name: ubuntu-20
       tags: ubuntu-focal
   ubuntu-20-arm:
