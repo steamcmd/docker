@@ -19,39 +19,26 @@ jobs:
 #      max-parallel: 2
       matrix:
         include:
-          -  name: ubuntu-24
-             tags: "ubuntu-noble ubuntu-24 ubuntu latest"
-          -  name: ubuntu-22
-             tags: "ubuntu-jammy ubuntu-22"
-          -  name: ubuntu-20
-             tags: "ubuntu-focal ubuntu-20"
+          - name: ubuntu-24
+            tags: "ubuntu-noble ubuntu-24 ubuntu latest"
+          - name: ubuntu-22
+            tags: "ubuntu-jammy ubuntu-22"
+          - name: ubuntu-20
+            tags: "ubuntu-focal ubuntu-20"
+          - name: debian-12
+            tags: "debian-bookworm debian-12 debian-latest"
+          - name: debian-11
+            tags: "debian-bullseye debian-11"
+          - name: debian-10
+            tags: "debian-buster debian-10"
+          - name: alpine-3
+            tags: "alpine alpine-3 alpine-latest"
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: ${{ matrix.name }}
       tags: ${{ matrix.tags }}
 
-
-  ## linux / debian
-  #debian-12:
-  #  uses: ./.github/workflows/_build-linux.yml
-  #  secrets: inherit
-  #  with:
-  #    name: debian-12
-  #    tags: debian-bookworm debian
-  #debian-11:
-  #  uses: ./.github/workflows/_build-linux.yml
-  #  secrets: inherit
-  #  with:
-  #    name: debian-11
-  #    tags: debian-bullseye
-  #debian-10:
-  #  uses: ./.github/workflows/_build-linux.yml
-  #  secrets: inherit
-  #  with:
-  #    name: debian-10
-  #    tags: debian-buster
-#
   ### linux / alpine
   #alpine-3:
   #  uses: ./.github/workflows/_build-linux.yml
