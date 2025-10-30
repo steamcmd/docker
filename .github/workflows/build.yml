@@ -13,49 +13,34 @@ on:
     - cron: '0 5 * * *'
 
 jobs:
-  ## linux / ubuntu
-  ubuntu-24:
+  build-ubuntu-linux:
+    strategy:
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            name: ubuntu-24
+            tags: "ubuntu-noble ubuntu latest"
+          - runner: ubuntu-24.04-arm
+            name: ubuntu-24
+            tags: "ubuntu-noble ubuntu latest"
+          - runner: ubuntu-24.04
+            name: ubuntu-22
+            tags: "ubuntu-jammy"
+          - runner: ubuntu-24.04-arm
+            name: ubuntu-22
+            tags: "ubuntu-jammy"
+          - runner: ubuntu-24.04
+            name: ubuntu-20
+            tags: "ubuntu-focal"
+          - runner: ubuntu-24.04-arm
+            name: ubuntu-20
+            tags: "ubuntu-focal"
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
-      runner: ubuntu-24.04
-      name: ubuntu-24
-      tags: ubuntu-noble ubuntu latest
-  ubuntu-24-arm:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      runner: ubuntu-24.04-arm
-      name: ubuntu-24
-      tags: ubuntu-noble ubuntu latest
-  ubuntu-22:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      runner: ubuntu-24.04
-      name: ubuntu-22
-      tags: ubuntu-jammy
-  ubuntu-22-arm:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      runner: ubuntu-24.04-arm
-      name: ubuntu-22
-      tags: ubuntu-jammy
-  ubuntu-20:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      runner: ubuntu-24.04
-      name: ubuntu-20
-      tags: ubuntu-focal
-  ubuntu-20-arm:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      runner: ubuntu-24.04-arm
-      name: ubuntu-20
-      tags: ubuntu-focal
+      runner: ${{ matrix.runner }}
+      name: ${{ matrix.name }}
+      tags: ${{ matrix.tags }}
 
 
   ## linux / debian
