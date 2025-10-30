@@ -23,18 +23,12 @@ jobs:
           - runner: ubuntu-24.04-arm
             name: ubuntu-24
             tags: "ubuntu-noble ubuntu latest"
-          - runner: ubuntu-24.04
+          - runner: ubuntu-22.04
             name: ubuntu-22
             tags: "ubuntu-jammy"
-          - runner: ubuntu-24.04-arm
+          - runner: ubuntu-22.04-arm
             name: ubuntu-22
             tags: "ubuntu-jammy"
-          - runner: ubuntu-24.04
-            name: ubuntu-20
-            tags: "ubuntu-focal"
-          - runner: ubuntu-24.04-arm
-            name: ubuntu-20
-            tags: "ubuntu-focal"
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
