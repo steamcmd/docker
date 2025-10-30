@@ -16,15 +16,15 @@ jobs:
   build-linux:
     strategy:
       fail-fast: false
-      max-parallel: 2
+#      max-parallel: 2
       matrix:
         include:
-            name: ubuntu-24
-            tags: "ubuntu-noble ubuntu latest"
-            name: ubuntu-22
-            tags: "ubuntu-jammy"
-            name: ubuntu-20
-            tags: "ubuntu-focal"
+          -  name: ubuntu-24
+             tags: "ubuntu-noble ubuntu-24 ubuntu latest"
+          -  name: ubuntu-22
+             tags: "ubuntu-jammy ubuntu-22"
+          -  name: ubuntu-20
+             tags: "ubuntu-focal ubuntu-20"
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
