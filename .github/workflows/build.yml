@@ -5,10 +5,7 @@ on:
     branches:
       - master
       - develop
-  pull_request:
-    branches:
-      - master
-      - develop
+      - main
   schedule:
     - cron: '0 5 * * *'
 
@@ -25,8 +22,10 @@ jobs:
             tags: "ubuntu-jammy ubuntu-22"
           - name: ubuntu-20
             tags: "ubuntu-focal ubuntu-20"
+          - name: debian-13
+            tags: "debian-trixie debian-13 debian-latest"
           - name: debian-12
-            tags: "debian-bookworm debian-12 debian-latest"
+            tags: "debian-bookworm debian-12"
           - name: debian-11
             tags: "debian-bullseye debian-11"
           - name: debian-10
