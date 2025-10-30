@@ -15,9 +15,13 @@ on:
 jobs:
   ## linux / ubuntu
   ubuntu-24:
+    strategy:
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
+      runner: {{ matrix.runner }}
       name: ubuntu-24
       tags: ubuntu-noble ubuntu latest
   ubuntu-22:

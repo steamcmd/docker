@@ -2,6 +2,10 @@ name: Build Linux Image Template
 on:
   workflow_call:
     inputs:
+      runner:
+        type: string
+        required: true
+        description: "The runner which the action runs on."
       name:
         type: string
         required: true
@@ -17,7 +21,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner  }}
     steps:
       - name: Checkout current repository
         uses: actions/checkout@v5
