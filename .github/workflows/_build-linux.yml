@@ -59,8 +59,8 @@ jobs:
           context: ./dockerfiles/${{ inputs.name }}
           file: ./dockerfiles/${{ inputs.name }}/Dockerfile
           platforms: linux/amd64,linux/arm64
+          load: false
           push: false
-          load: true
           tags: steamcmd:${{ inputs.name }}
 
       - name: Run static test on Docker image
