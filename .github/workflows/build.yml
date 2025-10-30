@@ -1,5 +1,6 @@
 name: Build Images
 on:
+  manual_dispatch:
   push:
     branches:
       - master
