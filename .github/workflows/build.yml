@@ -15,6 +15,7 @@ on:
 jobs:
   build-ubuntu-linux:
     strategy:
+      fail-fast: true
       matrix:
         include:
           - runner: ubuntu-24.04
