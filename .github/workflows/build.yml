@@ -32,6 +32,14 @@ jobs:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
+      runner: ubuntu-24.04
+      name: ubuntu-22
+      tags: ubuntu-jammy
+  ubuntu-22-arm:
+    uses: ./.github/workflows/_build-linux.yml
+    secrets: inherit
+    with:
+      runner: ubuntu-24.04-arm
       name: ubuntu-22
       tags: ubuntu-jammy
   ubuntu-20:
@@ -40,71 +48,80 @@ jobs:
     with:
       name: ubuntu-20
       tags: ubuntu-focal
+  ubuntu-20-arm:
+    uses: ./.github/workflows/_build-linux.yml
+    secrets: inherit
+    with:
+      runner: ubuntu-24.04-arm
+      name: ubuntu-20
+      tags: ubuntu-focal
+
 
   ## linux / debian
-  debian-12:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      name: debian-12
-      tags: debian-bookworm debian
-  debian-11:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      name: debian-11
-      tags: debian-bullseye
-  debian-10:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      name: debian-10
-      tags: debian-buster
-
-  ## linux / alpine
-  alpine-3:
-    uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-22
-    secrets: inherit
-    with:
-      name: alpine-3
-      tags: alpine
-
-  ## linux / rocky
-  rocky-9:
-    uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-22
-    secrets: inherit
-    with:
-      name: rocky-9
-      tags: rocky
-  rocky-8:
-    uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-22
-    secrets: inherit
-    with:
-      name: rocky-8
-
-  ## linux / centos
-  centos-9:
-    uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-22
-    secrets: inherit
-    with:
-      name: centos-9
-      tags: centos
-
-  ## linux / cachyos
-  cachyos:
-    uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-22
-    secrets: inherit
-    with:
-      name: cachyos
-
-  cachyos-3:
-    uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-22
-    secrets: inherit
-    with:
-      name: cachyos-3
+  #debian-12:
+  #  uses: ./.github/workflows/_build-linux.yml
+  #  secrets: inherit
+  #  with:
+  #    name: debian-12
+  #    tags: debian-bookworm debian
+  #debian-11:
+  #  uses: ./.github/workflows/_build-linux.yml
+  #  secrets: inherit
+  #  with:
+  #    name: debian-11
+  #    tags: debian-bullseye
+  #debian-10:
+  #  uses: ./.github/workflows/_build-linux.yml
+  #  secrets: inherit
+  #  with:
+  #    name: debian-10
+  #    tags: debian-buster
+#
+  ### linux / alpine
+  #alpine-3:
+  #  uses: ./.github/workflows/_build-linux.yml
+  #  needs: ubuntu-22
+  #  secrets: inherit
+  #  with:
+  #    name: alpine-3
+  #    tags: alpine
+#
+  ### linux / rocky
+  #rocky-9:
+  #  uses: ./.github/workflows/_build-linux.yml
+  #  needs: ubuntu-22
+  #  secrets: inherit
+  #  with:
+  #    name: rocky-9
+  #    tags: rocky
+  #rocky-8:
+  #  uses: ./.github/workflows/_build-linux.yml
+  #  needs: ubuntu-22
+  #  secrets: inherit
+  #  with:
+  #    name: rocky-8
+#
+  ### linux / centos
+  #centos-9:
+  #  uses: ./.github/workflows/_build-linux.yml
+  #  needs: ubuntu-22
+  #  secrets: inherit
+  #  with:
+  #    name: centos-9
+  #    tags: centos
+#
+  ### linux / cachyos
+  #cachyos:
+  #  uses: ./.github/workflows/_build-linux.yml
+  #  needs: ubuntu-22
+  #  secrets: inherit
+  #  with:
+  #    name: cachyos
+#
+  #cachyos-3:
+  #  uses: ./.github/workflows/_build-linux.yml
+  #  needs: ubuntu-22
+  #  secrets: inherit
+  #  with:
+  #    name: cachyos-3
+#
