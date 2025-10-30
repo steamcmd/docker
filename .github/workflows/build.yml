@@ -28,8 +28,6 @@ jobs:
             tags: "debian-bookworm debian-12"
           - name: debian-11
             tags: "debian-bullseye debian-11"
-          - name: debian-10
-            tags: "debian-buster debian-10"
           - name: alpine-3
             tags: "alpine alpine-3 alpine-latest"
           - name: rocky-9
