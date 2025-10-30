@@ -33,6 +33,8 @@ jobs:
             tags: "debian-buster debian-10"
           - name: alpine-3
             tags: "alpine alpine-3 alpine-latest"
+          - name: rocky-9
+            tags: "rocky rocky-9 rocky-latest"
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
