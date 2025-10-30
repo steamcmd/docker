@@ -11,35 +11,69 @@ on:
         required: false
         description: "Extra tags to use besides main tag."
 
+env:
+  DKR_ORG: dselen
+  GH_ORG: daanselen
+
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: e1himself/goss-installation-action@v1.0.3
+      - name: Checkout current repository
+        uses: actions/checkout@v5
         with:
-          version: "v0.3.20"
-      - name: Docker Login Hub
-        run: |
-          echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          echo ${{ secrets.GHCRIO_ACCESS_TOKEN }} | docker login ghcr.io -u ${{ secrets.GHCRIO_USERNAME }} --password-stdin
-      - name: Build Image
-        run: docker build -t steamcmd/steamcmd:${{ inputs.name }} -t ghcr.io/steamcmd/steamcmd:${{ inputs.name }} .
-        working-directory: dockerfiles/${{ inputs.name }}
-      - name: Test Image
-        run: dgoss run steamcmd/steamcmd:${{ inputs.name }} --entrypoint=""
+          fetch-depth: 0
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: |
+            - linux/amd64
+            - linux/arm64
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Install GOSS
+        uses: e1himself/goss-installation-action@v1
+        with:
+          version: "v0.4.9"
+
+      - name: Log into Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+          registry: docker.io
+
+      - name: Log into Github Container Registry
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.GHCRIO_USERNAME }}
+          password: ${{ secrets.GHCRIO_ACCESS_TOKEN }}
+          registry: ghcr.io
+
+      - name: Build the docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./dockerfiles/${{ inputs.name }}
+          file: ./dockerfiles/${{ inputs.name }}/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: false
+          load: true
+          tags: steamcmd:${{ inputs.name }}
+
+      - name: Run static test on Docker image
+        run: dgoss run docker.io/${{ env.ORG }}/steamcmd:${{ inputs.name }} --entrypoint=""
 
       # master
-      - name: Tag Image
+      - name: Tag and Push Docker image.
         run: >
           for TAG in ${{ inputs.tags }};
           do
-            docker tag steamcmd/steamcmd:${{ inputs.name }} steamcmd/steamcmd:${TAG};
-            docker tag ghcr.io/steamcmd/steamcmd:${{ inputs.name }} ghcr.io/steamcmd/steamcmd:${TAG};
+            docker tag steamcmd:${{ inputs.name }} docker.io/${{ env.DKR_ORG }}/steamcmd:${TAG};
+            docker tag steamcmd:${{ inputs.name }} ghcr.io/${{ env.GH_ORG }}/steamcmd:${TAG};
           done
+          docker push docker.io/${{ env.DKR_ORG }}/steamcmd --all-tags;
+          docker push ghcr.io/${{ env.GH_ORG }}/steamcmd --all-tags;
         if: ${{ (github.ref == 'refs/heads/master') && (inputs.tags != '') }}
-      - name: Push Image
-        run: |
-          docker push steamcmd/steamcmd --all-tags
-          docker push ghcr.io/steamcmd/steamcmd --all-tags
-        if: ${{ github.ref == 'refs/heads/master' }}
