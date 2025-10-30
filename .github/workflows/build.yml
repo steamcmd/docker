@@ -16,7 +16,7 @@ jobs:
   build-linux:
     strategy:
       fail-fast: false
-      max-parallels: 2
+      max-parallel: 2
       matrix:
         include:
           - runner: ubuntu-24.04
