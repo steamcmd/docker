@@ -35,7 +35,7 @@ jobs:
             echo "PLATFORM=linux/arm64" >> $GITHUB_ENV
           else
             echo "PLATFORM=linux/amd64" >> $GITHUB_ENV
-         fi
+          fi
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
