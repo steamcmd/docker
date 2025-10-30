@@ -15,13 +15,17 @@ on:
 jobs:
   ## linux / ubuntu
   ubuntu-24:
-    strategy:
-      matrix:
-        runner: [ubuntu-24.04, ubuntu-24.04-arm]
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
-      runner: {{ matrix.runner }}
+      runner: ubuntu-24.04
+      name: ubuntu-24
+      tags: ubuntu-noble ubuntu latest
+  ubuntu-24-arm:
+    uses: ./.github/workflows/_build-linux.yml
+    secrets: inherit
+    with:
+      runner: ubuntu-24.04-arm
       name: ubuntu-24
       tags: ubuntu-noble ubuntu latest
   ubuntu-22:
@@ -36,18 +40,6 @@ jobs:
     with:
       name: ubuntu-20
       tags: ubuntu-focal
-  ubuntu-18:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      name: ubuntu-18
-      tags: ubuntu-bionic
-  ubuntu-16:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      name: ubuntu-16
-      tags: ubuntu-xenial
 
   ## linux / debian
   debian-12:
