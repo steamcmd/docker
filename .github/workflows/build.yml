@@ -28,7 +28,6 @@ jobs:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
-      runner: ${{ matrix.runner }}
       name: ${{ matrix.name }}
       tags: ${{ matrix.tags }}
 
