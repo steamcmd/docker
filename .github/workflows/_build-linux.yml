@@ -12,8 +12,8 @@ on:
         description: "Extra tags to use besides main tag."
 
 env:
-  DKR_ORG: dselen
-  GH_ORG: daanselen
+  DKR_ORG: steamcmd
+  GH_ORG: steamcmd
 
 jobs:
   build:
