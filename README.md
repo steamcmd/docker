@@ -24,8 +24,6 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 *   [`ubuntu-24`, `ubuntu-noble`, `ubuntu`, `latest`](dockerfiles/ubuntu-24/Dockerfile)
 *   [`ubuntu-22`, `ubuntu-jammy`](dockerfiles/ubuntu-22/Dockerfile)
 *   [`ubuntu-20`, `ubuntu-focal`](dockerfiles/ubuntu-20/Dockerfile)
-*   [`ubuntu-18`, `ubuntu-bionic`](dockerfiles/ubuntu-18/Dockerfile)
-*   [`ubuntu-16`, `ubuntu-xenial`](dockerfiles/ubuntu-16/Dockerfile)
 *   [`debian-13`, `debian-trixie`, `debian`](dockerfiles/debian-13/Dockerfile)
 *   [`debian-12`, `debian-bookworm`](dockerfiles/debian-12/Dockerfile)
 *   [`debian-11`, `debian-bullseye`](dockerfiles/debian-11/Dockerfile)

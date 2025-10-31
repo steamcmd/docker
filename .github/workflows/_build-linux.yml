@@ -65,13 +65,17 @@ jobs:
         run: dgoss run steamcmd:${{ inputs.name }} --entrypoint=""
 
       # master
-      - name: Tag and Push Docker image.
+      - name: Tag image
         run: >
           for TAG in ${{ inputs.tags }};
           do
             docker tag steamcmd:${{ inputs.name }} docker.io/${{ env.DKR_ORG }}/steamcmd:${TAG};
             docker tag steamcmd:${{ inputs.name }} ghcr.io/${{ env.GH_ORG }}/steamcmd:${TAG};
           done
-          docker push docker.io/${{ env.DKR_ORG }}/steamcmd --all-tags;
-          docker push ghcr.io/${{ env.GH_ORG }}/steamcmd --all-tags;
-        if: ${{ (github.ref == 'refs/heads/master') && (inputs.tags != '') }}
+        if: ${{ inputs.tags != '' }}
+
+      - name: Push image
+        run: |
+          docker push docker.io/${{ env.DKR_ORG }}/steamcmd --all-tags
+          docker push ghcr.io/${{ env.GH_ORG }}/steamcmd --all-tags
+        if: ${{ github.ref == 'refs/heads/master' }}
