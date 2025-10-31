@@ -3,111 +3,38 @@ on:
   push:
     branches:
       - master
-      - develop
-  pull_request:
-    branches:
-      - master
-      - develop
   schedule:
     - cron: "0 5 * * *"
 
 jobs:
-  ## linux / ubuntu
-  ubuntu-24:
+  build-linux:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: ubuntu-24
+            tags: "ubuntu-noble ubuntu latest"
+          - name: ubuntu-22
+            tags: "ubuntu-jammy"
+          - name: ubuntu-20
+            tags: "ubuntu-focal"
+          - name: debian-13
+            tags: "debian-trixie debian"
+          - name: debian-12
+            tags: "debian-bookworm"
+          - name: debian-11
+            tags: "debian-bullseye"
+          - name: alpine-3
+            tags: "alpine"
+          - name: rocky-9
+            tags: "rocky"
+          - name: rocky-8
+          - name: centos-9
+            tags: "centos"
+          - name: cachyos
+          - name: cachyos-3
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
-      name: ubuntu-24
-      tags: ubuntu-noble ubuntu latest
-  ubuntu-22:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      name: ubuntu-22
-      tags: ubuntu-jammy
-  ubuntu-20:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      name: ubuntu-20
-      tags: ubuntu-focal
-  ubuntu-18:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      name: ubuntu-18
-      tags: ubuntu-bionic
-  ubuntu-16:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      name: ubuntu-16
-      tags: ubuntu-xenial
-
-  ## linux / debian
-  debian-13:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      name: debian-13
-      tags: debian-trixie debian
-  debian-12:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      name: debian-12
-      tags: debian-bookworm
-  debian-11:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      name: debian-11
-      tags: debian-bullseye
-
-  ## linux / alpine
-  alpine-3:
-    uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-22
-    secrets: inherit
-    with:
-      name: alpine-3
-      tags: alpine
-
-  ## linux / rocky
-  rocky-9:
-    uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-22
-    secrets: inherit
-    with:
-      name: rocky-9
-      tags: rocky
-  rocky-8:
-    uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-22
-    secrets: inherit
-    with:
-      name: rocky-8
-
-  ## linux / centos
-  centos-9:
-    uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-22
-    secrets: inherit
-    with:
-      name: centos-9
-      tags: centos
-
-  ## linux / cachyos
-  cachyos:
-    uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-22
-    secrets: inherit
-    with:
-      name: cachyos
-
-  cachyos-3:
-    uses: ./.github/workflows/_build-linux.yml
-    needs: ubuntu-22
-    secrets: inherit
-    with:
-      name: cachyos-3
+      name: ${{ matrix.name }}
+      tags: ${{ matrix.tags }}
