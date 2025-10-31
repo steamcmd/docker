@@ -9,7 +9,7 @@ on:
       - master
       - develop
   schedule:
-    - cron: '0 5 * * *'
+    - cron: "0 5 * * *"
 
 jobs:
   ## linux / ubuntu
@@ -45,24 +45,24 @@ jobs:
       tags: ubuntu-xenial
 
   ## linux / debian
+  debian-13:
+    uses: ./.github/workflows/_build-linux.yml
+    secrets: inherit
+    with:
+      name: debian-13
+      tags: debian-trixie debian
   debian-12:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: debian-12
-      tags: debian-bookworm debian
+      tags: debian-bookworm
   debian-11:
     uses: ./.github/workflows/_build-linux.yml
     secrets: inherit
     with:
       name: debian-11
       tags: debian-bullseye
-  debian-10:
-    uses: ./.github/workflows/_build-linux.yml
-    secrets: inherit
-    with:
-      name: debian-10
-      tags: debian-buster
 
   ## linux / alpine
   alpine-3:
