@@ -24,8 +24,9 @@ jobs:
             tags: "debian-bullseye"
           - name: alpine-3
             tags: "alpine"
-          - name: rocky-9
+          - name: rocky-10
             tags: "rocky"
+          - name: rocky-9
           - name: rocky-8
           - name: centos-10
             tags: "centos"
