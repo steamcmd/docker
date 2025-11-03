@@ -28,10 +28,6 @@ FROM quay.io/centos/centos:stream10
 ENV USER=root
 ENV HOME=/root
 
-# Install prerequisites
-RUN yum -y install glibc.i686 libgcc.i686 \
-    && yum -y clean all
-
 # Copy steamcmd files from builder
 COPY --from=builder /root/installer/steamcmd.sh /usr/lib/games/steam/
 COPY --from=builder /root/installer/linux32/steamcmd /usr/lib/games/steam/
