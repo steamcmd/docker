@@ -1,8 +1,6 @@
 name: Build Images
 on:
-  push:
-    branches:
-      - master
+  push: {}
   schedule:
     - cron: "0 5 * * *"
 
