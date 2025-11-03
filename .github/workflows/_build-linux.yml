@@ -45,6 +45,7 @@ jobs:
           registry: docker.io
 
       - name: Log into Github Container Registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.GHCRIO_USERNAME }}
@@ -66,6 +67,7 @@ jobs:
 
       # master
       - name: Tag image
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: >
           for TAG in ${{ inputs.tags }} ${{ inputs.name }};
           do
@@ -74,7 +76,7 @@ jobs:
           done
 
       - name: Push image
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           docker push docker.io/${{ env.DKR_ORG }}/steamcmd --all-tags
           docker push ghcr.io/${{ env.GH_ORG }}/steamcmd --all-tags
-        if: ${{ github.ref == 'refs/heads/master' }}

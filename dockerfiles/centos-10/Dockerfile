@@ -22,7 +22,7 @@ RUN tar -xvzf steamcmd.tar.gz && rm steamcmd.tar.gz
 ######## INSTALL ########
 
 # Set the base image
-FROM quay.io/centos/centos:stream9
+FROM quay.io/centos/centos:stream10
 
 # Set environment variables
 ENV USER=root

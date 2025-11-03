@@ -29,8 +29,9 @@ jobs:
           - name: rocky-9
             tags: "rocky"
           - name: rocky-8
-          - name: centos-9
+          - name: centos-10
             tags: "centos"
+          - name: centos-9
           - name: cachyos
           - name: cachyos-3
     uses: ./.github/workflows/_build-linux.yml
