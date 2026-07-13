@@ -38,3 +38,16 @@ jobs:
     with:
       name: ${{ matrix.name }}
       tags: ${{ matrix.tags }}
+
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run static test on Docker image
+        run: curl --silent --request POST $UPTIMEROBOT_WEBHOOK
+        env:
+          UPTIMEROBOT_WEBHOOK: ${{ secrets.UPTIMEROBOT_WEBHOOK }}
+
+
+
+
+      
