@@ -41,13 +41,9 @@ jobs:
 
   heartbeat:
     runs-on: ubuntu-latest
+    needs: [build-linux]
     steps:
       - name: Run static test on Docker image
         run: curl --silent --request POST $UPTIMEROBOT_WEBHOOK
         env:
           UPTIMEROBOT_WEBHOOK: ${{ secrets.UPTIMEROBOT_WEBHOOK }}
-
-
-
-
-      
