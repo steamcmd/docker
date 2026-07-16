@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-linux]
     steps:
-      - name: Run static test on Docker image
+      - name: Send heartbeat ping to update UptimeRobot monitoring
         run: curl --silent --request POST $UPTIMEROBOT_WEBHOOK
         env:
           UPTIMEROBOT_WEBHOOK: ${{ secrets.UPTIMEROBOT_WEBHOOK }}
