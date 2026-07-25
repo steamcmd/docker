@@ -12,8 +12,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - name: ubuntu-26
+            tags: "ubuntu-resolute latest"
           - name: ubuntu-24
-            tags: "ubuntu-noble ubuntu latest"
+            tags: "ubuntu-noble ubuntu stable"
           - name: ubuntu-22
             tags: "ubuntu-jammy"
           - name: ubuntu-20
