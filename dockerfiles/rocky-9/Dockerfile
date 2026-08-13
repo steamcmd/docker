@@ -22,7 +22,7 @@ RUN tar -xvzf steamcmd.tar.gz && rm steamcmd.tar.gz
 ######## INSTALL ########
 
 # Set the base image
-FROM rockylinux:9
+FROM rockylinux/rockylinux:9
 
 # Set environment variables
 ENV USER=root
