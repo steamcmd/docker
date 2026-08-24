@@ -20,7 +20,7 @@ ENV HOME=/root
 RUN sed -i 's/^#\[multilib\]/[multilib]/' /etc/pacman.conf && sed -i 's|^#Include = /etc/pacman.d/mirrorlist|Include = /etc/pacman.d/mirrorlist|' /etc/pacman.conf
 
 RUN pacman --noconfirm --needed -Syu \
-    && pacman --noconfirm --needed -S bash dbus gcc-libs sdl2 lib32-glibc lib32-dbus lib32-gcc-libs lib32-sdl2 \
+    && pacman --noconfirm --needed -S bash dbus gcc-libs sdl2 lib32-glibc lib32-dbus lib32-gcc-libs \
     && pacman --noconfirm -Scc
 
 RUN sed -i 's/^#\s*\(en_US\.UTF-8[[:space:]]\+UTF-8\)/\1/' /etc/locale.gen \
