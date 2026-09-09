@@ -27,7 +27,6 @@ have a look at [steamcmd.net](https://www.steamcmd.net).
 *   [`ubuntu-20`, `ubuntu-focal`](dockerfiles/ubuntu-20/Dockerfile)
 *   [`debian-13`, `debian-trixie`, `debian`](dockerfiles/debian-13/Dockerfile)
 *   [`debian-12`, `debian-bookworm`](dockerfiles/debian-12/Dockerfile)
-*   [`debian-11`, `debian-bullseye`](dockerfiles/debian-11/Dockerfile)
 *   [`alpine-3`, `alpine`](dockerfiles/alpine-3/Dockerfile)
 *   [`rocky-9`, `rocky`](dockerfiles/rocky-9/Dockerfile)
 *   [`rocky-8`](dockerfiles/rocky-8/Dockerfile)

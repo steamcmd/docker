@@ -24,8 +24,6 @@ jobs:
             tags: "debian-trixie debian"
           - name: debian-12
             tags: "debian-bookworm"
-          - name: debian-11
-            tags: "debian-bullseye"
           - name: alpine-3
             tags: "alpine"
           - name: rocky-9
